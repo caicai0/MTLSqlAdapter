@@ -8,7 +8,6 @@
 
 #import "CAIClient.h"
 #import "CAINet.h"
-#import "DataBase.h"
 
 @implementation CAIClient
 
@@ -30,7 +29,7 @@ static dispatch_once_t onceToken;
         CAINet * net = [CAINet shareClient];
         net.baseUrlString = @"http://192.168.1.92:8080/appserver/";
         net.baseUrlString = @"http://115.29.250.28:8080/app/";
-//        net.baseUrlString = @"http://mobile.cn-healthcare.com/";
+        net.baseUrlString = @"http://mobile.cn-healthcare.com/";
     }
     return self;
 }
@@ -496,8 +495,8 @@ static dispatch_once_t onceToken;
 #pragma mark - privateFounctions
 
 - (void)handleResponsObject:(NSDictionary *)dic netError:(NSError *)error resultClass:(Class)class finish:(void(^)(id result,NSError *error))finish{
-    NSLog(@" dic :%@\n-------------------------------------\n",dic);
-    NSLog(@" error:%@\n-------------------------------------\n",error);
+//    NSLog(@" dic :%@\n-------------------------------------\n",dic);
+//    NSLog(@" error:%@\n-------------------------------------\n",error);
     if (error) {
         if (finish) {
             finish(nil,error);//网络连接错误

@@ -69,7 +69,7 @@ static HTTPHeader * global = nil;
 }
 
 + (NSString *)getMemcard{
-    return [[DataBase shareDataBase] readDataOfLoginMemcard];
+    return @"";//TODO:用于测试
 }
 
 + (NSMutableURLRequest *)addSameHeaderParametersToRquest:(NSMutableURLRequest *)urlRequest{

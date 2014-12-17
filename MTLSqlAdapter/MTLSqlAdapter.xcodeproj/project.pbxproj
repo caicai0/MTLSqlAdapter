@@ -101,6 +101,9 @@
 		4BC920811A415945006193DA /* CAIYiyantang.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920521A415945006193DA /* CAIYiyantang.m */; };
 		4BC920821A415945006193DA /* CAIYiyantangListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920541A415945006193DA /* CAIYiyantangListResult.m */; };
 		4BC920831A415945006193DA /* CAIYiyantangRefreshResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920571A415945006193DA /* CAIYiyantangRefreshResult.m */; };
+		4BC920881A415C46006193DA /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920871A415C46006193DA /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4BC9208B1A415C81006193DA /* MD5Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208A1A415C81006193DA /* MD5Tool.m */; };
+		4BC9208E1A415ECB006193DA /* CAIDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208D1A415ECB006193DA /* CAIDataBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,6 +308,12 @@
 		4BC920541A415945006193DA /* CAIYiyantangListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangListResult.m; sourceTree = "<group>"; };
 		4BC920561A415945006193DA /* CAIYiyantangRefreshResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangRefreshResult.h; sourceTree = "<group>"; };
 		4BC920571A415945006193DA /* CAIYiyantangRefreshResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangRefreshResult.m; sourceTree = "<group>"; };
+		4BC920861A415C46006193DA /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		4BC920871A415C46006193DA /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		4BC920891A415C81006193DA /* MD5Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Tool.h; sourceTree = "<group>"; };
+		4BC9208A1A415C81006193DA /* MD5Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Tool.m; sourceTree = "<group>"; };
+		4BC9208C1A415ECB006193DA /* CAIDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIDataBase.h; sourceTree = "<group>"; };
+		4BC9208D1A415ECB006193DA /* CAIDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIDataBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +358,7 @@
 		4BC91F2D1A415297006193DA /* MTLSqlAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				4BC920851A415C46006193DA /* Tools */,
 				4BC91FE91A415945006193DA /* CAIClient */,
 				4BC91F321A415297006193DA /* AppDelegate.h */,
 				4BC91F331A415297006193DA /* AppDelegate.m */,
@@ -359,6 +369,8 @@
 				4BC91F401A415297006193DA /* LaunchScreen.xib */,
 				4BC91F351A415297006193DA /* MTLSqlAdapter.xcdatamodeld */,
 				4BC91F2E1A415297006193DA /* Supporting Files */,
+				4BC9208C1A415ECB006193DA /* CAIDataBase.h */,
+				4BC9208D1A415ECB006193DA /* CAIDataBase.m */,
 			);
 			path = MTLSqlAdapter;
 			sourceTree = "<group>";
@@ -851,6 +863,17 @@
 			path = CAIYiyantangRefresh;
 			sourceTree = "<group>";
 		};
+		4BC920851A415C46006193DA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920891A415C81006193DA /* MD5Tool.h */,
+				4BC9208A1A415C81006193DA /* MD5Tool.m */,
+				4BC920861A415C46006193DA /* OpenUDID.h */,
+				4BC920871A415C46006193DA /* OpenUDID.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -999,6 +1022,7 @@
 				4BC91FC21A4154F3006193DA /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
 				4BC91FAD1A4154F3006193DA /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4BC91FC01A4154F3006193DA /* NSObject+MTLComparisonAdditions.m in Sources */,
+				4BC920881A415C46006193DA /* OpenUDID.m in Sources */,
 				4BC91FE51A4155DA006193DA /* FMResultSet.m in Sources */,
 				4BC920791A415945006193DA /* CAIUpgradeResult.m in Sources */,
 				4BC920741A415945006193DA /* CAIReportResult.m in Sources */,
@@ -1013,6 +1037,7 @@
 				4BC91FDE1A4155DA006193DA /* FMTokenizers.m in Sources */,
 				4BC91FAA1A4154F3006193DA /* AFURLResponseSerialization.m in Sources */,
 				4BC9205C1A415945006193DA /* CAIAuthor.m in Sources */,
+				4BC9208E1A415ECB006193DA /* CAIDataBase.m in Sources */,
 				4BC920831A415945006193DA /* CAIYiyantangRefreshResult.m in Sources */,
 				4BC920601A415945006193DA /* CAICollectionResult.m in Sources */,
 				4BC91FB31A4154F3006193DA /* UIWebView+AFNetworking.m in Sources */,
@@ -1037,6 +1062,7 @@
 				4BC9206C1A415945006193DA /* CAINewsList.m in Sources */,
 				4BC9207A1A415945006193DA /* CAIUploadImageResult.m in Sources */,
 				4BC920691A415945006193DA /* CAINewsContent.m in Sources */,
+				4BC9208B1A415C81006193DA /* MD5Tool.m in Sources */,
 				4BC91FE11A4155DA006193DA /* FMDatabase.m in Sources */,
 				4BC91F371A415297006193DA /* MTLSqlAdapter.xcdatamodeld in Sources */,
 				4BC9205A1A415945006193DA /* CAINetPasser.m in Sources */,

@@ -8,7 +8,8 @@
 
 #import "MTLModel.h"
 #import "Mantle.h"
-@interface CAINews : MTLModel <MTLJSONSerializing>
+#import "MTLFMDBAdapter.h"
+@interface CAINews : MTLModel <MTLJSONSerializing,MTLFMDBSerializing>
 
 @property (nonatomic, strong) NSString * author;
 @property (nonatomic, strong) NSString * newsId;

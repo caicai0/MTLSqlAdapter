@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "CAIClient.h"
+#import "CAIDataBase.h"
 
 @interface ViewController ()
 
@@ -16,6 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[CAIClient shareClient]newsListTopWithPage:1 publishTime:@"0" finish:^(CAINewsList *result, NSError *error) {
+        [[CAIDataBase shareDataBase]createTables];
+        for (CAINews * news in result.datas) {
+            [[CAIDataBase shareDataBase]insertModel:news toTable:@"news"];
+        }
+//        NSLog(@"%@",result);
+    }];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

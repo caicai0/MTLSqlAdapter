@@ -14,6 +14,13 @@
 #import "FMDB.h"
 #import "MTLFMDBAdapter.h"
 
+typedef enum{
+    mtl_propertyContentTypeBase,
+    mtl_propertyContentTypeReference,
+    mtl_propertyContentTypePointer,
+    mtl_propertyContentTypeStruct
+}mtl_propertyContentType;
+
 NSString * const MTLFMDBAdapterErrorDomain = @"MTLFMDBAdapterErrorDomain";
 const NSInteger MTLFMDBAdapterErrorInvalidFMResultSet = 2;
 const NSInteger MTLFMDBAdapterErrorInvalidFMResultSetMapping = 3;
@@ -326,19 +333,26 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 
 + (NSString *)updateStatementForModel:(MTLModel<MTLFMDBSerializing> *)model {
     // Build the where statement
+    return [self updateStatementForModel:model inTable:[model.class FMDBTableName]];
+}
+
++ (NSString *)updateStatementForModel:(MTLModel<MTLFMDBSerializing> *)model inTable:(NSString *)tableName{
+    NSParameterAssert([model isKindOfClass:[MTLModel class]] && [model conformsToProtocol:@protocol(MTLFMDBSerializing)]);
+    
+    
     NSArray *keys = [model.class FMDBPrimaryKeys];
     NSMutableArray *where = [NSMutableArray array];
     for (NSString *key in keys) {
         NSString *s = [NSString stringWithFormat:@"%@ = ?", key];
         [where addObject:s];
     }
-
+    
     NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
-	NSSet *propertyKeys = [model.class propertyKeys];
+    NSSet *propertyKeys = [model.class propertyKeys];
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
-	for (NSString *propertyKey in Keys) {
-		NSString *keyPath = columns[propertyKey];
+    for (NSString *propertyKey in Keys) {
+        NSString *keyPath = columns[propertyKey];
         keyPath = keyPath ? : propertyKey;
         
         if (keyPath != nil && ![keyPath isEqual:[NSNull null]]) {
@@ -347,7 +361,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         }
     }
     
-    NSString *statement = [NSString stringWithFormat:@"update %@ set %@ where %@", [model.class FMDBTableName], [stats componentsJoinedByString:@", "], [where componentsJoinedByString:@" AND "]];
+    NSString *statement = [NSString stringWithFormat:@"update %@ set %@ where %@", tableName, [stats componentsJoinedByString:@", "], [where componentsJoinedByString:@" AND "]];
     
     return statement;
 }
@@ -366,6 +380,121 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     return statement;
 }
 
++ (NSString *)createTable:(NSString *)tableName class:(Class)aClass{
+    NSParameterAssert(([aClass isSubclassOfClass:[MTLModel class]] && [aClass conformsToProtocol:@protocol(MTLFMDBSerializing)]));
+    
+    if ([aClass isSubclassOfClass:[MTLModel class]]) {
+        NSMutableString * resultString = [NSMutableString stringWithFormat:@"create table if not exists %@ ",tableName];
+        NSDictionary * dic = [MTLFMDBAdapter propertiesNameAndTypeOfClass:aClass];
+        NSDictionary * sqlDic = [MTLFMDBAdapter sqlTypeDictionary];
+        [resultString appendString:@"(id integer primary key autoincrement"];
+        for (NSString * key in dic.allKeys) {
+            NSDictionary * typeDic = dic[key];
+            NSString * type = typeDic[@"class"];
+            if ([sqlDic.allKeys containsObject:type]) {
+                [resultString appendFormat:@",%@ %@",key,sqlDic[type]];
+            }else{
+                NSLog(@"类型不存在%@->%@:%@",aClass,key,type);
+            }
+        }
+        [resultString appendString:@")"];
+        return resultString;
+    }
+    return nil;
+}
+
+#pragma mark - private
+
++ (NSDictionary *)propertiesNameAndTypeOfClass:(Class)class{
+    NSMutableDictionary*result = [NSMutableDictionary dictionary];
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList(class, &outCount);
+    for (i=0; i<outCount; i++) {
+        objc_property_t property = properties[i];
+        mtl_propertyAttributes * mtlProperty = mtl_copyPropertyAttributes(property);
+        NSDictionary * propertyDic = nil;
+        if (mtlProperty->objectClass) {
+            propertyDic = @{
+                            @"class":NSStringFromClass(mtlProperty->objectClass),
+                            @"type":@(mtl_propertyContentTypeReference),
+                            @"getter":NSStringFromSelector(mtlProperty->getter),
+                            @"setter":NSStringFromSelector(mtlProperty->setter)
+                            };
+        }else{
+            if (mtlProperty->type[0]!='#' && mtlProperty->type[0]!='{' && mtlProperty->type[0]!='@') {
+                NSString * key = [NSString stringWithCString:mtlProperty->type encoding:NSUTF8StringEncoding];
+                if ([[self encodeTypeDictionary].allKeys containsObject:key]) {
+                    propertyDic = @{
+                                    @"class":[self encodeTypeDictionary][key],
+                                    @"type":@(mtl_propertyContentTypeBase),
+                                    @"getter":NSStringFromSelector(mtlProperty->getter),
+                                    @"setter":NSStringFromSelector(mtlProperty->setter)
+                                    };
+                }else{
+                    NSLog(@"字典缺少类型:%@",key);
+                }
+            }
+        }
+        if(propertyDic){
+            NSString * propertyName = [[NSString alloc]initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
+            [result setObject:propertyDic forKeyedSubscript:propertyName];
+        }
+    }
+    return result;
+}
+
+#pragma mark - 静态变量 逻辑不相关
+//解释@encode()的NSDictionary
++ (NSDictionary *)encodeTypeDictionary{
+    static NSDictionary * typeDic = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        typeDic = @{
+                    [NSString stringWithCString:@encode(char) encoding:NSUTF8StringEncoding]:@"char",
+                    [NSString stringWithCString:@encode(int) encoding:NSUTF8StringEncoding]:@"int",
+                    [NSString stringWithCString:@encode(short) encoding:NSUTF8StringEncoding]:@"short",
+                    [NSString stringWithCString:@encode(long) encoding:NSUTF8StringEncoding]:@"long",
+                    [NSString stringWithCString:@encode(long long) encoding:NSUTF8StringEncoding]:@"long long",
+                    [NSString stringWithCString:@encode(unsigned char) encoding:NSUTF8StringEncoding]:@"unsigned char",
+                    [NSString stringWithCString:@encode(unsigned int) encoding:NSUTF8StringEncoding]:@"unsigned int",
+                    [NSString stringWithCString:@encode(unsigned short) encoding:NSUTF8StringEncoding]:@"unsigned short",
+                    [NSString stringWithCString:@encode(unsigned long) encoding:NSUTF8StringEncoding]:@"unsigned long",
+                    [NSString stringWithCString:@encode(unsigned long long) encoding:NSUTF8StringEncoding]:@"unsigned long long",
+                    [NSString stringWithCString:@encode(float) encoding:NSUTF8StringEncoding]:@"float",
+                    [NSString stringWithCString:@encode(double) encoding:NSUTF8StringEncoding]:@"double",
+                    [NSString stringWithCString:@encode(bool) encoding:NSUTF8StringEncoding]:@"bool",
+                    [NSString stringWithCString:@encode(BOOL) encoding:NSUTF8StringEncoding]:@"Bool"
+                    };
+    });
+    return typeDic;
+}
+
+//解释类型 与sqllite 类型对应关系
++ (NSDictionary *)sqlTypeDictionary{
+    static NSDictionary * sqlTypeDictionary = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sqlTypeDictionary = @{
+                              //baseType
+                              @"char":@"char(1)",
+                              @"int":@"integer(64)",
+                              @"short":@"smallint",
+                              @"long":@"integer",
+                              @"long long":@"integer",
+                              @"unsigned char":@"integer",
+                              @"unsigned int":@"integer",
+                              @"unsigned short":@"integer",
+                              @"unsigned long":@"integer",
+                              @"unsigned long long":@"text",
+                              @"float":@"float",
+                              @"double":@"double",
+                              @"bool":@"bool",
+                              @"Bool":@"bool",
+                              @"NSString":@"text"
+                              };
+    });
+    return sqlTypeDictionary;
+}
 
 
 @end

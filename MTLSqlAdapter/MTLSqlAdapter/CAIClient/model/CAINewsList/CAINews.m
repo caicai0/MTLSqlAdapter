@@ -10,6 +10,7 @@
 
 @implementation CAINews
 
+#pragma mark - mantle
 + (NSDictionary *)JSONKeyPathsByPropertyKey{
     return @{
              @"author":@"author",
@@ -28,4 +29,31 @@
              };
 }
 
+#pragma mark - MTLFMDBSerializing
+
++ (NSDictionary *)FMDBColumnsByPropertyKey{
+    return @{
+             @"author":@"author",
+             @"newsId":@"newsId",
+             @"imageUrlString":@"imageUrlString",
+             @"publishedTime":@"publishedTime",
+             @"readTimes":@"readTimes",
+             @"shortTitle":@"shortTitle",
+             @"source":@"source",
+             @"subTitle":@"subTitle",
+             @"summary":@"summary",
+             @"title":@"title",
+             @"newsType":@"newsType",
+             @"importSource":@"importSource",
+             @"openType":@"openType"
+             };
+}
+
++ (NSArray *)FMDBPrimaryKeys{
+    return @[@"newsId"];
+}
+
++ (NSString *)FMDBTableName{
+    return @"news";
+}
 @end
