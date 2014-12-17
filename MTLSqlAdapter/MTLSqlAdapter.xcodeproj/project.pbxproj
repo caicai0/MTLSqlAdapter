@@ -57,6 +57,50 @@
 		4BC91FE41A4155DA006193DA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FD91A4155DA006193DA /* FMDatabaseQueue.m */; };
 		4BC91FE51A4155DA006193DA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FDC1A4155DA006193DA /* FMResultSet.m */; };
 		4BC91FE81A415695006193DA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC91FE71A415695006193DA /* libsqlite3.dylib */; };
+		4BC920581A415945006193DA /* CAIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FEB1A415945006193DA /* CAIClient.m */; };
+		4BC920591A415945006193DA /* CAINet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FED1A415945006193DA /* CAINet.m */; };
+		4BC9205A1A415945006193DA /* CAINetPasser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FEF1A415945006193DA /* CAINetPasser.m */; };
+		4BC9205B1A415945006193DA /* HTTPHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FF11A415945006193DA /* HTTPHeader.m */; };
+		4BC9205C1A415945006193DA /* CAIAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FF51A415945006193DA /* CAIAuthor.m */; };
+		4BC9205D1A415945006193DA /* CAIAuthorNewsListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FF71A415945006193DA /* CAIAuthorNewsListResult.m */; };
+		4BC9205E1A415945006193DA /* CAIAuthorSyncResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FF91A415945006193DA /* CAIAuthorSyncResult.m */; };
+		4BC9205F1A415945006193DA /* CAICollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FFC1A415945006193DA /* CAICollection.m */; };
+		4BC920601A415945006193DA /* CAICollectionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91FFE1A415945006193DA /* CAICollectionResult.m */; };
+		4BC920611A415945006193DA /* CAICommentPublishResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920011A415945006193DA /* CAICommentPublishResult.m */; };
+		4BC920621A415945006193DA /* CAILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920041A415945006193DA /* CAILabel.m */; };
+		4BC920631A415945006193DA /* CAILabelListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920061A415945006193DA /* CAILabelListResult.m */; };
+		4BC920641A415945006193DA /* CAIMessageAuthenticationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920091A415945006193DA /* CAIMessageAuthenticationResult.m */; };
+		4BC920651A415945006193DA /* CAIMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9200C1A415945006193DA /* CAIMessage.m */; };
+		4BC920661A415945006193DA /* CAIMyMessageResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9200E1A415945006193DA /* CAIMyMessageResult.m */; };
+		4BC920671A415945006193DA /* CAIComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920111A415945006193DA /* CAIComment.m */; };
+		4BC920681A415945006193DA /* CAINewsCommentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920131A415945006193DA /* CAINewsCommentResult.m */; };
+		4BC920691A415945006193DA /* CAINewsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920161A415945006193DA /* CAINewsContent.m */; };
+		4BC9206A1A415945006193DA /* CAINewsContentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920181A415945006193DA /* CAINewsContentResult.m */; };
+		4BC9206B1A415945006193DA /* CAINews.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9201B1A415945006193DA /* CAINews.m */; };
+		4BC9206C1A415945006193DA /* CAINewsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9201D1A415945006193DA /* CAINewsList.m */; };
+		4BC9206D1A415945006193DA /* CAISlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9201F1A415945006193DA /* CAISlide.m */; };
+		4BC9206E1A415945006193DA /* CAINonDatasResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920221A415945006193DA /* CAINonDatasResult.m */; };
+		4BC9206F1A415945006193DA /* CAIPushDetailResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920251A415945006193DA /* CAIPushDetailResult.m */; };
+		4BC920701A415945006193DA /* CAIRegistedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920281A415945006193DA /* CAIRegistedUser.m */; };
+		4BC920711A415945006193DA /* CAIRegistOrLoginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9202A1A415945006193DA /* CAIRegistOrLoginResult.m */; };
+		4BC920721A415945006193DA /* CAIAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9202D1A415945006193DA /* CAIAd.m */; };
+		4BC920731A415945006193DA /* CAICate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9202F1A415945006193DA /* CAICate.m */; };
+		4BC920741A415945006193DA /* CAIReportResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920311A415945006193DA /* CAIReportResult.m */; };
+		4BC920751A415945006193DA /* CAISpecail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920341A415945006193DA /* CAISpecail.m */; };
+		4BC920761A415945006193DA /* CAISpecailListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920361A415945006193DA /* CAISpecailListResult.m */; };
+		4BC920771A415945006193DA /* CAISubsribe.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920391A415945006193DA /* CAISubsribe.m */; };
+		4BC920781A415945006193DA /* CAISubsribeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9203B1A415945006193DA /* CAISubsribeResult.m */; };
+		4BC920791A415945006193DA /* CAIUpgradeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9203E1A415945006193DA /* CAIUpgradeResult.m */; };
+		4BC9207A1A415945006193DA /* CAIUploadImageResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920411A415945006193DA /* CAIUploadImageResult.m */; };
+		4BC9207B1A415945006193DA /* CAIYiyantangComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920441A415945006193DA /* CAIYiyantangComment.m */; };
+		4BC9207C1A415945006193DA /* CAIYiyantangCommentListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920461A415945006193DA /* CAIYiyantangCommentListResult.m */; };
+		4BC9207D1A415945006193DA /* CAIYiyantanContentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920491A415945006193DA /* CAIYiyantanContentHeader.m */; };
+		4BC9207E1A415945006193DA /* CAIYiyantangContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9204B1A415945006193DA /* CAIYiyantangContent.m */; };
+		4BC9207F1A415945006193DA /* CAIYiyantangContentResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9204D1A415945006193DA /* CAIYiyantangContentResult.m */; };
+		4BC920801A415945006193DA /* CAIYiyantangMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9204F1A415945006193DA /* CAIYiyantangMember.m */; };
+		4BC920811A415945006193DA /* CAIYiyantang.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920521A415945006193DA /* CAIYiyantang.m */; };
+		4BC920821A415945006193DA /* CAIYiyantangListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920541A415945006193DA /* CAIYiyantangListResult.m */; };
+		4BC920831A415945006193DA /* CAIYiyantangRefreshResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920571A415945006193DA /* CAIYiyantangRefreshResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +217,94 @@
 		4BC91FDB1A4155DA006193DA /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		4BC91FDC1A4155DA006193DA /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		4BC91FE71A415695006193DA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		4BC91FEA1A415945006193DA /* CAIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIClient.h; sourceTree = "<group>"; };
+		4BC91FEB1A415945006193DA /* CAIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIClient.m; sourceTree = "<group>"; };
+		4BC91FEC1A415945006193DA /* CAINet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINet.h; sourceTree = "<group>"; };
+		4BC91FED1A415945006193DA /* CAINet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINet.m; sourceTree = "<group>"; };
+		4BC91FEE1A415945006193DA /* CAINetPasser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINetPasser.h; sourceTree = "<group>"; };
+		4BC91FEF1A415945006193DA /* CAINetPasser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINetPasser.m; sourceTree = "<group>"; };
+		4BC91FF01A415945006193DA /* HTTPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHeader.h; sourceTree = "<group>"; };
+		4BC91FF11A415945006193DA /* HTTPHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPHeader.m; sourceTree = "<group>"; };
+		4BC91FF41A415945006193DA /* CAIAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIAuthor.h; sourceTree = "<group>"; };
+		4BC91FF51A415945006193DA /* CAIAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIAuthor.m; sourceTree = "<group>"; };
+		4BC91FF61A415945006193DA /* CAIAuthorNewsListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIAuthorNewsListResult.h; sourceTree = "<group>"; };
+		4BC91FF71A415945006193DA /* CAIAuthorNewsListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIAuthorNewsListResult.m; sourceTree = "<group>"; };
+		4BC91FF81A415945006193DA /* CAIAuthorSyncResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIAuthorSyncResult.h; sourceTree = "<group>"; };
+		4BC91FF91A415945006193DA /* CAIAuthorSyncResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIAuthorSyncResult.m; sourceTree = "<group>"; };
+		4BC91FFB1A415945006193DA /* CAICollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAICollection.h; sourceTree = "<group>"; };
+		4BC91FFC1A415945006193DA /* CAICollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAICollection.m; sourceTree = "<group>"; };
+		4BC91FFD1A415945006193DA /* CAICollectionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAICollectionResult.h; sourceTree = "<group>"; };
+		4BC91FFE1A415945006193DA /* CAICollectionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAICollectionResult.m; sourceTree = "<group>"; };
+		4BC920001A415945006193DA /* CAICommentPublishResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAICommentPublishResult.h; sourceTree = "<group>"; };
+		4BC920011A415945006193DA /* CAICommentPublishResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAICommentPublishResult.m; sourceTree = "<group>"; };
+		4BC920031A415945006193DA /* CAILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAILabel.h; sourceTree = "<group>"; };
+		4BC920041A415945006193DA /* CAILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAILabel.m; sourceTree = "<group>"; };
+		4BC920051A415945006193DA /* CAILabelListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAILabelListResult.h; sourceTree = "<group>"; };
+		4BC920061A415945006193DA /* CAILabelListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAILabelListResult.m; sourceTree = "<group>"; };
+		4BC920081A415945006193DA /* CAIMessageAuthenticationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIMessageAuthenticationResult.h; sourceTree = "<group>"; };
+		4BC920091A415945006193DA /* CAIMessageAuthenticationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIMessageAuthenticationResult.m; sourceTree = "<group>"; };
+		4BC9200B1A415945006193DA /* CAIMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIMessage.h; sourceTree = "<group>"; };
+		4BC9200C1A415945006193DA /* CAIMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIMessage.m; sourceTree = "<group>"; };
+		4BC9200D1A415945006193DA /* CAIMyMessageResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIMyMessageResult.h; sourceTree = "<group>"; };
+		4BC9200E1A415945006193DA /* CAIMyMessageResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIMyMessageResult.m; sourceTree = "<group>"; };
+		4BC920101A415945006193DA /* CAIComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIComment.h; sourceTree = "<group>"; };
+		4BC920111A415945006193DA /* CAIComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIComment.m; sourceTree = "<group>"; };
+		4BC920121A415945006193DA /* CAINewsCommentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINewsCommentResult.h; sourceTree = "<group>"; };
+		4BC920131A415945006193DA /* CAINewsCommentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINewsCommentResult.m; sourceTree = "<group>"; };
+		4BC920151A415945006193DA /* CAINewsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINewsContent.h; sourceTree = "<group>"; };
+		4BC920161A415945006193DA /* CAINewsContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINewsContent.m; sourceTree = "<group>"; };
+		4BC920171A415945006193DA /* CAINewsContentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINewsContentResult.h; sourceTree = "<group>"; };
+		4BC920181A415945006193DA /* CAINewsContentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINewsContentResult.m; sourceTree = "<group>"; };
+		4BC9201A1A415945006193DA /* CAINews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINews.h; sourceTree = "<group>"; };
+		4BC9201B1A415945006193DA /* CAINews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINews.m; sourceTree = "<group>"; };
+		4BC9201C1A415945006193DA /* CAINewsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINewsList.h; sourceTree = "<group>"; };
+		4BC9201D1A415945006193DA /* CAINewsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINewsList.m; sourceTree = "<group>"; };
+		4BC9201E1A415945006193DA /* CAISlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISlide.h; sourceTree = "<group>"; };
+		4BC9201F1A415945006193DA /* CAISlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAISlide.m; sourceTree = "<group>"; };
+		4BC920211A415945006193DA /* CAINonDatasResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAINonDatasResult.h; sourceTree = "<group>"; };
+		4BC920221A415945006193DA /* CAINonDatasResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAINonDatasResult.m; sourceTree = "<group>"; };
+		4BC920241A415945006193DA /* CAIPushDetailResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIPushDetailResult.h; sourceTree = "<group>"; };
+		4BC920251A415945006193DA /* CAIPushDetailResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIPushDetailResult.m; sourceTree = "<group>"; };
+		4BC920271A415945006193DA /* CAIRegistedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIRegistedUser.h; sourceTree = "<group>"; };
+		4BC920281A415945006193DA /* CAIRegistedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIRegistedUser.m; sourceTree = "<group>"; };
+		4BC920291A415945006193DA /* CAIRegistOrLoginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIRegistOrLoginResult.h; sourceTree = "<group>"; };
+		4BC9202A1A415945006193DA /* CAIRegistOrLoginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIRegistOrLoginResult.m; sourceTree = "<group>"; };
+		4BC9202C1A415945006193DA /* CAIAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIAd.h; sourceTree = "<group>"; };
+		4BC9202D1A415945006193DA /* CAIAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIAd.m; sourceTree = "<group>"; };
+		4BC9202E1A415945006193DA /* CAICate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAICate.h; sourceTree = "<group>"; };
+		4BC9202F1A415945006193DA /* CAICate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAICate.m; sourceTree = "<group>"; };
+		4BC920301A415945006193DA /* CAIReportResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIReportResult.h; sourceTree = "<group>"; };
+		4BC920311A415945006193DA /* CAIReportResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIReportResult.m; sourceTree = "<group>"; };
+		4BC920331A415945006193DA /* CAISpecail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISpecail.h; sourceTree = "<group>"; };
+		4BC920341A415945006193DA /* CAISpecail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAISpecail.m; sourceTree = "<group>"; };
+		4BC920351A415945006193DA /* CAISpecailListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISpecailListResult.h; sourceTree = "<group>"; };
+		4BC920361A415945006193DA /* CAISpecailListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAISpecailListResult.m; sourceTree = "<group>"; };
+		4BC920381A415945006193DA /* CAISubsribe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISubsribe.h; sourceTree = "<group>"; };
+		4BC920391A415945006193DA /* CAISubsribe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAISubsribe.m; sourceTree = "<group>"; };
+		4BC9203A1A415945006193DA /* CAISubsribeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISubsribeResult.h; sourceTree = "<group>"; };
+		4BC9203B1A415945006193DA /* CAISubsribeResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAISubsribeResult.m; sourceTree = "<group>"; };
+		4BC9203D1A415945006193DA /* CAIUpgradeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIUpgradeResult.h; sourceTree = "<group>"; };
+		4BC9203E1A415945006193DA /* CAIUpgradeResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIUpgradeResult.m; sourceTree = "<group>"; };
+		4BC920401A415945006193DA /* CAIUploadImageResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIUploadImageResult.h; sourceTree = "<group>"; };
+		4BC920411A415945006193DA /* CAIUploadImageResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIUploadImageResult.m; sourceTree = "<group>"; };
+		4BC920431A415945006193DA /* CAIYiyantangComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangComment.h; sourceTree = "<group>"; };
+		4BC920441A415945006193DA /* CAIYiyantangComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangComment.m; sourceTree = "<group>"; };
+		4BC920451A415945006193DA /* CAIYiyantangCommentListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangCommentListResult.h; sourceTree = "<group>"; };
+		4BC920461A415945006193DA /* CAIYiyantangCommentListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangCommentListResult.m; sourceTree = "<group>"; };
+		4BC920481A415945006193DA /* CAIYiyantanContentHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantanContentHeader.h; sourceTree = "<group>"; };
+		4BC920491A415945006193DA /* CAIYiyantanContentHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantanContentHeader.m; sourceTree = "<group>"; };
+		4BC9204A1A415945006193DA /* CAIYiyantangContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangContent.h; sourceTree = "<group>"; };
+		4BC9204B1A415945006193DA /* CAIYiyantangContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangContent.m; sourceTree = "<group>"; };
+		4BC9204C1A415945006193DA /* CAIYiyantangContentResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangContentResult.h; sourceTree = "<group>"; };
+		4BC9204D1A415945006193DA /* CAIYiyantangContentResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangContentResult.m; sourceTree = "<group>"; };
+		4BC9204E1A415945006193DA /* CAIYiyantangMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangMember.h; sourceTree = "<group>"; };
+		4BC9204F1A415945006193DA /* CAIYiyantangMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangMember.m; sourceTree = "<group>"; };
+		4BC920511A415945006193DA /* CAIYiyantang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantang.h; sourceTree = "<group>"; };
+		4BC920521A415945006193DA /* CAIYiyantang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantang.m; sourceTree = "<group>"; };
+		4BC920531A415945006193DA /* CAIYiyantangListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangListResult.h; sourceTree = "<group>"; };
+		4BC920541A415945006193DA /* CAIYiyantangListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangListResult.m; sourceTree = "<group>"; };
+		4BC920561A415945006193DA /* CAIYiyantangRefreshResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIYiyantangRefreshResult.h; sourceTree = "<group>"; };
+		4BC920571A415945006193DA /* CAIYiyantangRefreshResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIYiyantangRefreshResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +349,7 @@
 		4BC91F2D1A415297006193DA /* MTLSqlAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				4BC91FE91A415945006193DA /* CAIClient */,
 				4BC91F321A415297006193DA /* AppDelegate.h */,
 				4BC91F331A415297006193DA /* AppDelegate.m */,
 				4BC91F381A415297006193DA /* ViewController.h */,
@@ -447,6 +580,277 @@
 			name = FrameWork;
 			sourceTree = "<group>";
 		};
+		4BC91FE91A415945006193DA /* CAIClient */ = {
+			isa = PBXGroup;
+			children = (
+				4BC91FEA1A415945006193DA /* CAIClient.h */,
+				4BC91FEB1A415945006193DA /* CAIClient.m */,
+				4BC91FEC1A415945006193DA /* CAINet.h */,
+				4BC91FED1A415945006193DA /* CAINet.m */,
+				4BC91FEE1A415945006193DA /* CAINetPasser.h */,
+				4BC91FEF1A415945006193DA /* CAINetPasser.m */,
+				4BC91FF01A415945006193DA /* HTTPHeader.h */,
+				4BC91FF11A415945006193DA /* HTTPHeader.m */,
+				4BC91FF21A415945006193DA /* model */,
+			);
+			path = CAIClient;
+			sourceTree = "<group>";
+		};
+		4BC91FF21A415945006193DA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4BC91FF31A415945006193DA /* CAIAuthorNewsList */,
+				4BC91FF81A415945006193DA /* CAIAuthorSyncResult.h */,
+				4BC91FF91A415945006193DA /* CAIAuthorSyncResult.m */,
+				4BC91FFA1A415945006193DA /* CAICollection */,
+				4BC91FFF1A415945006193DA /* CAICommentPublish */,
+				4BC920021A415945006193DA /* CAILabel */,
+				4BC920071A415945006193DA /* CAIMessageAuthentication */,
+				4BC9200A1A415945006193DA /* CAIMyMessage */,
+				4BC9200F1A415945006193DA /* CAINewsComment */,
+				4BC920141A415945006193DA /* CAINewsContent */,
+				4BC920191A415945006193DA /* CAINewsList */,
+				4BC920201A415945006193DA /* CAINonDatas */,
+				4BC920231A415945006193DA /* CAIPushDetail */,
+				4BC920261A415945006193DA /* CAIRegistResult */,
+				4BC9202B1A415945006193DA /* CAIReportResult */,
+				4BC920321A415945006193DA /* CAISpecialList */,
+				4BC920371A415945006193DA /* CAISubsribe */,
+				4BC9203C1A415945006193DA /* CAIUpgrade */,
+				4BC9203F1A415945006193DA /* CAIUploadImage */,
+				4BC920421A415945006193DA /* CAIYiyantangComment */,
+				4BC920471A415945006193DA /* CAIYiyantangContent */,
+				4BC920501A415945006193DA /* CAIYiyantangList */,
+				4BC920551A415945006193DA /* CAIYiyantangRefresh */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		4BC91FF31A415945006193DA /* CAIAuthorNewsList */ = {
+			isa = PBXGroup;
+			children = (
+				4BC91FF41A415945006193DA /* CAIAuthor.h */,
+				4BC91FF51A415945006193DA /* CAIAuthor.m */,
+				4BC91FF61A415945006193DA /* CAIAuthorNewsListResult.h */,
+				4BC91FF71A415945006193DA /* CAIAuthorNewsListResult.m */,
+			);
+			path = CAIAuthorNewsList;
+			sourceTree = "<group>";
+		};
+		4BC91FFA1A415945006193DA /* CAICollection */ = {
+			isa = PBXGroup;
+			children = (
+				4BC91FFB1A415945006193DA /* CAICollection.h */,
+				4BC91FFC1A415945006193DA /* CAICollection.m */,
+				4BC91FFD1A415945006193DA /* CAICollectionResult.h */,
+				4BC91FFE1A415945006193DA /* CAICollectionResult.m */,
+			);
+			path = CAICollection;
+			sourceTree = "<group>";
+		};
+		4BC91FFF1A415945006193DA /* CAICommentPublish */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920001A415945006193DA /* CAICommentPublishResult.h */,
+				4BC920011A415945006193DA /* CAICommentPublishResult.m */,
+			);
+			path = CAICommentPublish;
+			sourceTree = "<group>";
+		};
+		4BC920021A415945006193DA /* CAILabel */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920031A415945006193DA /* CAILabel.h */,
+				4BC920041A415945006193DA /* CAILabel.m */,
+				4BC920051A415945006193DA /* CAILabelListResult.h */,
+				4BC920061A415945006193DA /* CAILabelListResult.m */,
+			);
+			path = CAILabel;
+			sourceTree = "<group>";
+		};
+		4BC920071A415945006193DA /* CAIMessageAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920081A415945006193DA /* CAIMessageAuthenticationResult.h */,
+				4BC920091A415945006193DA /* CAIMessageAuthenticationResult.m */,
+			);
+			path = CAIMessageAuthentication;
+			sourceTree = "<group>";
+		};
+		4BC9200A1A415945006193DA /* CAIMyMessage */ = {
+			isa = PBXGroup;
+			children = (
+				4BC9200B1A415945006193DA /* CAIMessage.h */,
+				4BC9200C1A415945006193DA /* CAIMessage.m */,
+				4BC9200D1A415945006193DA /* CAIMyMessageResult.h */,
+				4BC9200E1A415945006193DA /* CAIMyMessageResult.m */,
+			);
+			path = CAIMyMessage;
+			sourceTree = "<group>";
+		};
+		4BC9200F1A415945006193DA /* CAINewsComment */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920101A415945006193DA /* CAIComment.h */,
+				4BC920111A415945006193DA /* CAIComment.m */,
+				4BC920121A415945006193DA /* CAINewsCommentResult.h */,
+				4BC920131A415945006193DA /* CAINewsCommentResult.m */,
+			);
+			path = CAINewsComment;
+			sourceTree = "<group>";
+		};
+		4BC920141A415945006193DA /* CAINewsContent */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920151A415945006193DA /* CAINewsContent.h */,
+				4BC920161A415945006193DA /* CAINewsContent.m */,
+				4BC920171A415945006193DA /* CAINewsContentResult.h */,
+				4BC920181A415945006193DA /* CAINewsContentResult.m */,
+			);
+			path = CAINewsContent;
+			sourceTree = "<group>";
+		};
+		4BC920191A415945006193DA /* CAINewsList */ = {
+			isa = PBXGroup;
+			children = (
+				4BC9201A1A415945006193DA /* CAINews.h */,
+				4BC9201B1A415945006193DA /* CAINews.m */,
+				4BC9201C1A415945006193DA /* CAINewsList.h */,
+				4BC9201D1A415945006193DA /* CAINewsList.m */,
+				4BC9201E1A415945006193DA /* CAISlide.h */,
+				4BC9201F1A415945006193DA /* CAISlide.m */,
+			);
+			path = CAINewsList;
+			sourceTree = "<group>";
+		};
+		4BC920201A415945006193DA /* CAINonDatas */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920211A415945006193DA /* CAINonDatasResult.h */,
+				4BC920221A415945006193DA /* CAINonDatasResult.m */,
+			);
+			path = CAINonDatas;
+			sourceTree = "<group>";
+		};
+		4BC920231A415945006193DA /* CAIPushDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920241A415945006193DA /* CAIPushDetailResult.h */,
+				4BC920251A415945006193DA /* CAIPushDetailResult.m */,
+			);
+			path = CAIPushDetail;
+			sourceTree = "<group>";
+		};
+		4BC920261A415945006193DA /* CAIRegistResult */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920271A415945006193DA /* CAIRegistedUser.h */,
+				4BC920281A415945006193DA /* CAIRegistedUser.m */,
+				4BC920291A415945006193DA /* CAIRegistOrLoginResult.h */,
+				4BC9202A1A415945006193DA /* CAIRegistOrLoginResult.m */,
+			);
+			path = CAIRegistResult;
+			sourceTree = "<group>";
+		};
+		4BC9202B1A415945006193DA /* CAIReportResult */ = {
+			isa = PBXGroup;
+			children = (
+				4BC9202C1A415945006193DA /* CAIAd.h */,
+				4BC9202D1A415945006193DA /* CAIAd.m */,
+				4BC9202E1A415945006193DA /* CAICate.h */,
+				4BC9202F1A415945006193DA /* CAICate.m */,
+				4BC920301A415945006193DA /* CAIReportResult.h */,
+				4BC920311A415945006193DA /* CAIReportResult.m */,
+			);
+			path = CAIReportResult;
+			sourceTree = "<group>";
+		};
+		4BC920321A415945006193DA /* CAISpecialList */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920331A415945006193DA /* CAISpecail.h */,
+				4BC920341A415945006193DA /* CAISpecail.m */,
+				4BC920351A415945006193DA /* CAISpecailListResult.h */,
+				4BC920361A415945006193DA /* CAISpecailListResult.m */,
+			);
+			path = CAISpecialList;
+			sourceTree = "<group>";
+		};
+		4BC920371A415945006193DA /* CAISubsribe */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920381A415945006193DA /* CAISubsribe.h */,
+				4BC920391A415945006193DA /* CAISubsribe.m */,
+				4BC9203A1A415945006193DA /* CAISubsribeResult.h */,
+				4BC9203B1A415945006193DA /* CAISubsribeResult.m */,
+			);
+			path = CAISubsribe;
+			sourceTree = "<group>";
+		};
+		4BC9203C1A415945006193DA /* CAIUpgrade */ = {
+			isa = PBXGroup;
+			children = (
+				4BC9203D1A415945006193DA /* CAIUpgradeResult.h */,
+				4BC9203E1A415945006193DA /* CAIUpgradeResult.m */,
+			);
+			path = CAIUpgrade;
+			sourceTree = "<group>";
+		};
+		4BC9203F1A415945006193DA /* CAIUploadImage */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920401A415945006193DA /* CAIUploadImageResult.h */,
+				4BC920411A415945006193DA /* CAIUploadImageResult.m */,
+			);
+			path = CAIUploadImage;
+			sourceTree = "<group>";
+		};
+		4BC920421A415945006193DA /* CAIYiyantangComment */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920431A415945006193DA /* CAIYiyantangComment.h */,
+				4BC920441A415945006193DA /* CAIYiyantangComment.m */,
+				4BC920451A415945006193DA /* CAIYiyantangCommentListResult.h */,
+				4BC920461A415945006193DA /* CAIYiyantangCommentListResult.m */,
+			);
+			path = CAIYiyantangComment;
+			sourceTree = "<group>";
+		};
+		4BC920471A415945006193DA /* CAIYiyantangContent */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920481A415945006193DA /* CAIYiyantanContentHeader.h */,
+				4BC920491A415945006193DA /* CAIYiyantanContentHeader.m */,
+				4BC9204A1A415945006193DA /* CAIYiyantangContent.h */,
+				4BC9204B1A415945006193DA /* CAIYiyantangContent.m */,
+				4BC9204C1A415945006193DA /* CAIYiyantangContentResult.h */,
+				4BC9204D1A415945006193DA /* CAIYiyantangContentResult.m */,
+				4BC9204E1A415945006193DA /* CAIYiyantangMember.h */,
+				4BC9204F1A415945006193DA /* CAIYiyantangMember.m */,
+			);
+			path = CAIYiyantangContent;
+			sourceTree = "<group>";
+		};
+		4BC920501A415945006193DA /* CAIYiyantangList */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920511A415945006193DA /* CAIYiyantang.h */,
+				4BC920521A415945006193DA /* CAIYiyantang.m */,
+				4BC920531A415945006193DA /* CAIYiyantangListResult.h */,
+				4BC920541A415945006193DA /* CAIYiyantangListResult.m */,
+			);
+			path = CAIYiyantangList;
+			sourceTree = "<group>";
+		};
+		4BC920551A415945006193DA /* CAIYiyantangRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				4BC920561A415945006193DA /* CAIYiyantangRefreshResult.h */,
+				4BC920571A415945006193DA /* CAIYiyantangRefreshResult.m */,
+			);
+			path = CAIYiyantangRefresh;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -548,50 +952,94 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC920811A415945006193DA /* CAIYiyantang.m in Sources */,
+				4BC9205B1A415945006193DA /* HTTPHeader.m in Sources */,
+				4BC9206D1A415945006193DA /* CAISlide.m in Sources */,
 				4BC91FC11A4154F3006193DA /* NSValueTransformer+MTLInversionAdditions.m in Sources */,
 				4BC91FB11A4154F3006193DA /* UIProgressView+AFNetworking.m in Sources */,
 				4BC91FBD1A4154F3006193DA /* NSArray+MTLManipulationAdditions.m in Sources */,
 				4BC91FAF1A4154F3006193DA /* UIButton+AFNetworking.m in Sources */,
 				4BC91FBA1A4154F3006193DA /* MTLModel.m in Sources */,
 				4BC91FE21A4155DA006193DA /* FMDatabaseAdditions.m in Sources */,
+				4BC9206E1A415945006193DA /* CAINonDatasResult.m in Sources */,
+				4BC920671A415945006193DA /* CAIComment.m in Sources */,
 				4BC91FB51A4154F3006193DA /* EXTScope.m in Sources */,
+				4BC920641A415945006193DA /* CAIMessageAuthenticationResult.m in Sources */,
+				4BC920611A415945006193DA /* CAICommentPublishResult.m in Sources */,
 				4BC91FC31A4154F3006193DA /* MTLFMDBAdapter.m in Sources */,
 				4BC91FE31A4155DA006193DA /* FMDatabasePool.m in Sources */,
+				4BC9207C1A415945006193DA /* CAIYiyantangCommentListResult.m in Sources */,
 				4BC91FB21A4154F3006193DA /* UIRefreshControl+AFNetworking.m in Sources */,
+				4BC9207F1A415945006193DA /* CAIYiyantangContentResult.m in Sources */,
+				4BC9206B1A415945006193DA /* CAINews.m in Sources */,
 				4BC91FAE1A4154F3006193DA /* UIAlertView+AFNetworking.m in Sources */,
+				4BC9205D1A415945006193DA /* CAIAuthorNewsListResult.m in Sources */,
+				4BC920751A415945006193DA /* CAISpecail.m in Sources */,
 				4BC91FB81A4154F3006193DA /* MTLManagedObjectAdapter.m in Sources */,
+				4BC920781A415945006193DA /* CAISubsribeResult.m in Sources */,
+				4BC920821A415945006193DA /* CAIYiyantangListResult.m in Sources */,
 				4BC91F341A415297006193DA /* AppDelegate.m in Sources */,
+				4BC9205E1A415945006193DA /* CAIAuthorSyncResult.m in Sources */,
+				4BC9207D1A415945006193DA /* CAIYiyantanContentHeader.m in Sources */,
 				4BC91FA71A4154F3006193DA /* AFSecurityPolicy.m in Sources */,
+				4BC920761A415945006193DA /* CAISpecailListResult.m in Sources */,
+				4BC920621A415945006193DA /* CAILabel.m in Sources */,
 				4BC91F311A415297006193DA /* main.m in Sources */,
+				4BC920681A415945006193DA /* CAINewsCommentResult.m in Sources */,
 				4BC91FBB1A4154F3006193DA /* MTLReflection.m in Sources */,
+				4BC920701A415945006193DA /* CAIRegistedUser.m in Sources */,
 				4BC91FDF1A4155DA006193DA /* FMDatabase+InMemoryOnDiskIO.m in Sources */,
+				4BC920591A415945006193DA /* CAINet.m in Sources */,
+				4BC920731A415945006193DA /* CAICate.m in Sources */,
 				4BC91FA41A4154F3006193DA /* AFHTTPRequestOperationManager.m in Sources */,
 				4BC91FA81A4154F3006193DA /* AFURLConnectionOperation.m in Sources */,
 				4BC91FB01A4154F3006193DA /* UIImageView+AFNetworking.m in Sources */,
+				4BC920651A415945006193DA /* CAIMessage.m in Sources */,
 				4BC91FA31A4154F3006193DA /* AFHTTPRequestOperation.m in Sources */,
 				4BC91FC21A4154F3006193DA /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
 				4BC91FAD1A4154F3006193DA /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4BC91FC01A4154F3006193DA /* NSObject+MTLComparisonAdditions.m in Sources */,
 				4BC91FE51A4155DA006193DA /* FMResultSet.m in Sources */,
+				4BC920791A415945006193DA /* CAIUpgradeResult.m in Sources */,
+				4BC920741A415945006193DA /* CAIReportResult.m in Sources */,
 				4BC91FBC1A4154F3006193DA /* MTLValueTransformer.m in Sources */,
+				4BC920771A415945006193DA /* CAISubsribe.m in Sources */,
 				4BC91F3A1A415297006193DA /* ViewController.m in Sources */,
+				4BC920581A415945006193DA /* CAIClient.m in Sources */,
+				4BC920801A415945006193DA /* CAIYiyantangMember.m in Sources */,
 				4BC91FA91A4154F3006193DA /* AFURLRequestSerialization.m in Sources */,
 				4BC91FA51A4154F3006193DA /* AFHTTPSessionManager.m in Sources */,
 				4BC91FA61A4154F3006193DA /* AFNetworkReachabilityManager.m in Sources */,
 				4BC91FDE1A4155DA006193DA /* FMTokenizers.m in Sources */,
 				4BC91FAA1A4154F3006193DA /* AFURLResponseSerialization.m in Sources */,
+				4BC9205C1A415945006193DA /* CAIAuthor.m in Sources */,
+				4BC920831A415945006193DA /* CAIYiyantangRefreshResult.m in Sources */,
+				4BC920601A415945006193DA /* CAICollectionResult.m in Sources */,
 				4BC91FB31A4154F3006193DA /* UIWebView+AFNetworking.m in Sources */,
 				4BC91FB91A4154F3006193DA /* MTLModel+NSCoding.m in Sources */,
+				4BC9206A1A415945006193DA /* CAINewsContentResult.m in Sources */,
 				4BC91FBF1A4154F3006193DA /* NSError+MTLModelException.m in Sources */,
 				4BC91FB71A4154F3006193DA /* MTLJSONAdapter.m in Sources */,
+				4BC9207E1A415945006193DA /* CAIYiyantangContent.m in Sources */,
+				4BC920661A415945006193DA /* CAIMyMessageResult.m in Sources */,
 				4BC91FAB1A4154F3006193DA /* AFURLSessionManager.m in Sources */,
+				4BC920721A415945006193DA /* CAIAd.m in Sources */,
 				4BC91FAC1A4154F3006193DA /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4BC920711A415945006193DA /* CAIRegistOrLoginResult.m in Sources */,
+				4BC920631A415945006193DA /* CAILabelListResult.m in Sources */,
 				4BC91FDD1A4155DA006193DA /* FMDatabase+FTS3.m in Sources */,
+				4BC9207B1A415945006193DA /* CAIYiyantangComment.m in Sources */,
 				4BC91FB41A4154F3006193DA /* EXTRuntimeExtensions.m in Sources */,
+				4BC9206F1A415945006193DA /* CAIPushDetailResult.m in Sources */,
 				4BC91FBE1A4154F3006193DA /* NSDictionary+MTLManipulationAdditions.m in Sources */,
+				4BC9205F1A415945006193DA /* CAICollection.m in Sources */,
 				4BC91FE41A4155DA006193DA /* FMDatabaseQueue.m in Sources */,
+				4BC9206C1A415945006193DA /* CAINewsList.m in Sources */,
+				4BC9207A1A415945006193DA /* CAIUploadImageResult.m in Sources */,
+				4BC920691A415945006193DA /* CAINewsContent.m in Sources */,
 				4BC91FE11A4155DA006193DA /* FMDatabase.m in Sources */,
 				4BC91F371A415297006193DA /* MTLSqlAdapter.xcdatamodeld in Sources */,
+				4BC9205A1A415945006193DA /* CAINetPasser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
