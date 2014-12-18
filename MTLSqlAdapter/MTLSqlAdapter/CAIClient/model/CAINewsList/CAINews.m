@@ -52,8 +52,4 @@
 + (NSArray *)FMDBPrimaryKeys{
     return @[@"newsId"];
 }
-
-+ (NSString *)FMDBTableName{
-    return @"news";
-}
 @end

@@ -13,6 +13,7 @@
 #import "MTLReflection.h"
 #import "FMDB.h"
 #import "MTLFMDBAdapter.h"
+#import "CAIFMDBQuery.h"
 
 typedef enum{
     mtl_propertyContentTypeBase,
@@ -309,14 +310,18 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 + (NSString *)insertStatementForModel:(MTLModel<MTLFMDBSerializing> *)model {
+    return [MTLFMDBAdapter insertStatementForModel:model intoTable:NSStringFromClass(model.class)];
+}
+
++ (NSString *)insertStatementForModel:(MTLModel<MTLFMDBSerializing> *)model intoTable:(NSString *)tableName{
     NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
-	NSSet *propertyKeys = [model.class propertyKeys];
+    NSSet *propertyKeys = [model.class propertyKeys];
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
     NSMutableArray *qmarks = [NSMutableArray array];
-	for (NSString *propertyKey in Keys)
+    for (NSString *propertyKey in Keys)
     {
-		NSString *keyPath = columns[propertyKey];
+        NSString *keyPath = columns[propertyKey];
         keyPath = keyPath ? : propertyKey;
         
         if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
@@ -326,19 +331,38 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         }
     }
     
-    NSString *statement = [NSString stringWithFormat:@"insert into %@ (%@) values (%@)", [model.class FMDBTableName], [stats componentsJoinedByString:@", "], [qmarks componentsJoinedByString:@", "]];
+    NSString *statement = [NSString stringWithFormat:@"insert into %@ (%@) values (%@)", tableName, [stats componentsJoinedByString:@", "], [qmarks componentsJoinedByString:@", "]];
+    return statement;
+}
+
++ (NSString *)replaceStatementForModel:(MTLModel<MTLFMDBSerializing> *)model inTable:(NSString *)tableName{
+    NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
+    NSSet *propertyKeys = [model.class propertyKeys];
+    NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
+    NSMutableArray *stats = [NSMutableArray array];
+    NSMutableArray *qmarks = [NSMutableArray array];
+    for (NSString *propertyKey in Keys)
+    {
+        NSString *keyPath = columns[propertyKey];
+        keyPath = keyPath ? : propertyKey;
+        
+        if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
+        {
+            [stats addObject:keyPath];
+            [qmarks addObject:@"?"];
+        }
+    }
     
+    NSString *statement = [NSString stringWithFormat:@"replace into %@ (%@) values (%@)", tableName, [stats componentsJoinedByString:@", "], [qmarks componentsJoinedByString:@", "]];
     return statement;
 }
 
 + (NSString *)updateStatementForModel:(MTLModel<MTLFMDBSerializing> *)model {
-    // Build the where statement
-    return [self updateStatementForModel:model inTable:[model.class FMDBTableName]];
+    return [self updateStatementForModel:model inTable:NSStringFromClass(model.class)];
 }
 
 + (NSString *)updateStatementForModel:(MTLModel<MTLFMDBSerializing> *)model inTable:(NSString *)tableName{
     NSParameterAssert([model isKindOfClass:[MTLModel class]] && [model conformsToProtocol:@protocol(MTLFMDBSerializing)]);
-    
     
     NSArray *keys = [model.class FMDBPrimaryKeys];
     NSMutableArray *where = [NSMutableArray array];
@@ -367,6 +391,10 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 + (NSString *)deleteStatementForModel:(MTLModel<MTLFMDBSerializing> *)model {
+    return [MTLFMDBAdapter deleteStatementForModel:model fromTable:NSStringFromClass(model.class)];
+}
+
++ (NSString *)deleteStatementForModel:(MTLModel<MTLFMDBSerializing> *)model fromTable:(NSString *)tableName{
     NSParameterAssert([model.class conformsToProtocol:@protocol(MTLFMDBSerializing)]);
     
     NSArray *keys = [model.class FMDBPrimaryKeys];
@@ -375,9 +403,57 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         NSString *s = [NSString stringWithFormat:@"%@ = ?", key];
         [stats addObject:s];
     }
-    NSString *statement = [NSString stringWithFormat:@"delete from %@ where %@", [model.class FMDBTableName], [stats componentsJoinedByString:@" AND "]];
+    NSString *statement = [NSString stringWithFormat:@"delete from %@ where %@", tableName, [stats componentsJoinedByString:@" AND "]];
     
     return statement;
+}
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys inTable:(NSString *)tableName{
+    return [self findStatementInQuerys:querys orderBy:nil inTable:tableName];
+}
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderBy:(NSString *)order inTable:(NSString *)tableName{
+    return [self findStatementInQuerys:querys orderByArray:@[@{@"key":order,@"value":@"ASC"}] inTable:tableName];
+}
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray inTable:(NSString *)tableName{
+    NSParameterAssert(tableName);
+    
+    if(tableName && [tableName isKindOfClass:[NSString class]]){
+        NSString *statement = [NSString stringWithFormat:@"select * from %@",tableName];
+        
+        if (querys && querys.count) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (CAIFMDBQuery *query in querys) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@ ?", query.column,[MTLFMDBAdapter sqlForRelationshapType:query.relationType]];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" where %@",[stats componentsJoinedByString:@" AND "]];
+        }
+        
+        if (orderArray) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (NSDictionary *dic in orderArray) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@",dic[@"key"],dic[@"value"]];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" order by %@",[stats componentsJoinedByString:@" , "]];
+        }
+        
+        return statement;
+    }
+    return nil;
+}
+
++ (NSArray *)queryKeyValueFromQuerys:(NSArray *)querys{
+    if (querys && querys.count) {
+        NSMutableArray *values = [NSMutableArray array];
+        for (CAIFMDBQuery *query in querys) {
+            [values addObject:query.value];
+        }
+        return values;
+    }
+    return nil;
 }
 
 + (NSString *)createTable:(NSString *)tableName class:(Class)aClass{
@@ -401,6 +477,17 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         return resultString;
     }
     return nil;
+}
+
++ (NSString *)createIndexOnTable:(NSString *)tableName class:(Class)aClass{
+    NSParameterAssert(([aClass isSubclassOfClass:[MTLModel class]] && [aClass conformsToProtocol:@protocol(MTLFMDBSerializing)]));
+    NSArray * indexArray = [aClass FMDBPrimaryKeys];
+    NSMutableArray * indexs = [NSMutableArray array];
+    for (NSString * c in indexArray) {
+        [indexs addObject:[NSString stringWithFormat:@"%@ ASC",c]];
+    }
+    NSString * sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX %@_index ON %@ (%@)",tableName,tableName,[indexs componentsJoinedByString:@" , "]];
+    return sql;
 }
 
 #pragma mark - private
@@ -463,7 +550,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
                     [NSString stringWithCString:@encode(float) encoding:NSUTF8StringEncoding]:@"float",
                     [NSString stringWithCString:@encode(double) encoding:NSUTF8StringEncoding]:@"double",
                     [NSString stringWithCString:@encode(bool) encoding:NSUTF8StringEncoding]:@"bool",
-                    [NSString stringWithCString:@encode(BOOL) encoding:NSUTF8StringEncoding]:@"Bool"
+                    [NSString stringWithCString:@encode(BOOL) encoding:NSUTF8StringEncoding]:@"BOOL"
                     };
     });
     return typeDic;
@@ -489,12 +576,38 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
                               @"float":@"float",
                               @"double":@"double",
                               @"bool":@"bool",
-                              @"Bool":@"bool",
+                              @"BOOL":@"bool",
                               @"NSString":@"text"
                               };
     });
     return sqlTypeDictionary;
 }
 
+// 解释 CAIFMDBQueryRelationshapType
+
++ (NSString *)sqlForRelationshapType:(CAIFMDBQueryRelationshapType)relationshapType{
+    NSString * result = nil;
+    switch (relationshapType) {
+        case CAIFMDBQueryRelationshapTypeEqual:{
+            result = @"=";
+        }break;
+        case CAIFMDBQueryRelationshapTypeGreaterThan:{
+            result = @">";
+        }break;
+        case CAIFMDBQueryRelationshapTypeGreaterThanOrEqualTo:{
+            result = @">=";
+        }break;
+        case CAIFMDBQueryRelationshapTypeLessThan:{
+            result = @"<";
+        }break;
+        case CAIFMDBQueryRelationshapTypeLessThanOrEqualTo:{
+            result = @"<=";
+        }break;
+            
+        default:
+            break;
+    }
+    return result;
+}
 
 @end

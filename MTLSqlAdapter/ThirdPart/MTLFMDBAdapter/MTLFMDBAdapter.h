@@ -46,7 +46,7 @@
  
  @return an NSString with the name of the table.
  */
-+ (NSString *)FMDBTableName;
+//+ (NSString *)FMDBTableName;
 
 @optional
 
@@ -147,7 +147,9 @@ extern const NSInteger MTLFMDBAdapterErrorInvalidFMResultSetMapping;
  @return an NSString with the INSERT statement to use with FMDB.
  */
 + (NSString *)insertStatementForModel:(MTLModel<MTLFMDBSerializing> *)model;
++ (NSString *)insertStatementForModel:(MTLModel<MTLFMDBSerializing> *)model intoTable:(NSString *)tableName;
 
++ (NSString *)replaceStatementForModel:(MTLModel<MTLFMDBSerializing> *)model inTable:(NSString *)tableName;
 
 /**
  The SQL UPDATE statement for the object passed in `model`
@@ -167,7 +169,14 @@ extern const NSInteger MTLFMDBAdapterErrorInvalidFMResultSetMapping;
  @return an NSString with the INSERT statement to use with FMDB.
  */
 + (NSString *)deleteStatementForModel:(MTLModel<MTLFMDBSerializing> *)model;
++ (NSString *)deleteStatementForModel:(MTLModel<MTLFMDBSerializing> *)model fromTable:(NSString *)tableName;
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys inTable:(NSString *)tableName;//query 之间默认是 and 关系
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderBy:(NSString *)order inTable:(NSString *)tableName;
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray inTable:(NSString *)tableName;
++ (NSArray *)queryKeyValueFromQuerys:(NSArray *)querys;
 
 //生成创建表的sql语句
 + (NSString *)createTable:(NSString *)tableName class:(Class)aClass;
++ (NSString *)createIndexOnTable:(NSString *)tableName class:(Class)aClass;
 @end

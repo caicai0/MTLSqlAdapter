@@ -104,6 +104,7 @@
 		4BC920881A415C46006193DA /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920871A415C46006193DA /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4BC9208B1A415C81006193DA /* MD5Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208A1A415C81006193DA /* MD5Tool.m */; };
 		4BC9208E1A415ECB006193DA /* CAIDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208D1A415ECB006193DA /* CAIDataBase.m */; };
+		4BD9A15A1A42733500BB3C9F /* CAIFMDBQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,6 +315,8 @@
 		4BC9208A1A415C81006193DA /* MD5Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Tool.m; sourceTree = "<group>"; };
 		4BC9208C1A415ECB006193DA /* CAIDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIDataBase.h; sourceTree = "<group>"; };
 		4BC9208D1A415ECB006193DA /* CAIDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIDataBase.m; sourceTree = "<group>"; };
+		4BD9A1581A42733500BB3C9F /* CAIFMDBQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIFMDBQuery.h; sourceTree = "<group>"; };
+		4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIFMDBQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +518,8 @@
 			children = (
 				4BC91FA11A4154F3006193DA /* MTLFMDBAdapter.h */,
 				4BC91FA21A4154F3006193DA /* MTLFMDBAdapter.m */,
+				4BD9A1581A42733500BB3C9F /* CAIFMDBQuery.h */,
+				4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */,
 			);
 			path = MTLFMDBAdapter;
 			sourceTree = "<group>";
@@ -1044,6 +1049,7 @@
 				4BC91FB91A4154F3006193DA /* MTLModel+NSCoding.m in Sources */,
 				4BC9206A1A415945006193DA /* CAINewsContentResult.m in Sources */,
 				4BC91FBF1A4154F3006193DA /* NSError+MTLModelException.m in Sources */,
+				4BD9A15A1A42733500BB3C9F /* CAIFMDBQuery.m in Sources */,
 				4BC91FB71A4154F3006193DA /* MTLJSONAdapter.m in Sources */,
 				4BC9207E1A415945006193DA /* CAIYiyantangContent.m in Sources */,
 				4BC920661A415945006193DA /* CAIMyMessageResult.m in Sources */,
@@ -1258,6 +1264,7 @@
 				4BC91F531A415297006193DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BC91F541A415297006193DA /* Build configuration list for PBXNativeTarget "MTLSqlAdapterTests" */ = {
 			isa = XCConfigurationList;
@@ -1266,6 +1273,7 @@
 				4BC91F561A415297006193DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
