@@ -14,6 +14,7 @@
 #import "FMDB.h"
 #import "MTLFMDBAdapter.h"
 #import "CAIFMDBQuery.h"
+#import <objc/NSObject.h>
 
 typedef enum{
     mtl_propertyContentTypeBase,
@@ -97,7 +98,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 	if (self == nil) return nil;
     
 	_modelClass = modelClass;
-	_FMDBColumnsByPropertyKey = [[modelClass FMDBColumnsByPropertyKey] copy];
+	_FMDBColumnsByPropertyKey = [[MTLFMDBAdapter columnByPropertyKeyWithClass:modelClass] copy];
     
 	NSMutableDictionary *dictionaryValue = [[NSMutableDictionary alloc] initWithCapacity:self.FMDBDictionary.count];
     
@@ -265,7 +266,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 
 + (NSString *)propertyKeyForModel:(MTLModel<MTLFMDBSerializing> *)model column:(NSString *)column
 {
-    NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
+    NSDictionary *columns = [self columnByPropertyKeyWithClass:model.class];
     NSArray *allValues = [columns allValues];
     NSArray *allPropertyKeys = [columns allKeys];
     NSString *propertyKey = nil;
@@ -291,7 +292,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 + (NSArray *)columnValues:(MTLModel<MTLFMDBSerializing> *)model {
-    NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
+    NSDictionary *columns = [self columnByPropertyKeyWithClass:model.class];
 	NSSet *propertyKeys = [model.class propertyKeys];
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSDictionary *dictionaryValue = model.dictionaryValue;
@@ -314,7 +315,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 + (NSString *)insertStatementForModel:(MTLModel<MTLFMDBSerializing> *)model intoTable:(NSString *)tableName{
-    NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
+    NSDictionary *columns = [self columnByPropertyKeyWithClass:model.class];
     NSSet *propertyKeys = [model.class propertyKeys];
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
@@ -336,7 +337,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 + (NSString *)replaceStatementForModel:(MTLModel<MTLFMDBSerializing> *)model inTable:(NSString *)tableName{
-    NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
+    NSDictionary *columns = [self columnByPropertyKeyWithClass:model.class];
     NSSet *propertyKeys = [model.class propertyKeys];
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
@@ -371,7 +372,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         [where addObject:s];
     }
     
-    NSDictionary *columns = [model.class FMDBColumnsByPropertyKey];
+    NSDictionary *columns = [self columnByPropertyKeyWithClass:model.class];
     NSSet *propertyKeys = [model.class propertyKeys];
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
@@ -463,12 +464,20 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         NSMutableString * resultString = [NSMutableString stringWithFormat:@"create table if not exists %@ ",tableName];
         NSDictionary * dic = [MTLFMDBAdapter propertiesNameAndTypeOfClass:aClass];
         NSDictionary * sqlDic = [MTLFMDBAdapter sqlTypeDictionary];
+        NSDictionary * colmnDic = [MTLFMDBAdapter columnByPropertyKeyWithClass:aClass];
         [resultString appendString:@"(id integer primary key autoincrement"];
         for (NSString * key in dic.allKeys) {
             NSDictionary * typeDic = dic[key];
             NSString * type = typeDic[@"class"];
             if ([sqlDic.allKeys containsObject:type]) {
-                [resultString appendFormat:@",%@ %@",key,sqlDic[type]];
+                id value = colmnDic[key];
+                if (!(value && value == [NSNull null])) {
+                    if (value && [value isKindOfClass:[NSString class]] && ![value isEqualToString:key]) {
+                        [resultString appendFormat:@",%@ %@",value,sqlDic[type]];
+                    }else{
+                        [resultString appendFormat:@",%@ %@",key,sqlDic[type]];
+                    }
+                }
             }else{
                 NSLog(@"类型不存在%@->%@:%@",aClass,key,type);
             }
@@ -491,6 +500,27 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 #pragma mark - private
+
++ (NSDictionary *)columnByPropertyKeyWithClass:(Class)aClass{
+    if (YES) {
+        NSMutableDictionary *result = [NSMutableDictionary dictionary];
+        NSSet *set = [aClass propertyKeys];
+        for (NSString * pro in set) {
+            [result setObject:pro forKey:pro];
+        }
+        if (YES) {
+            NSDictionary *dic = [aClass FMDBColumnsByPropertyKey];
+            for (NSString * pro in dic.allKeys) {
+                NSString * value = dic[pro];
+                if (value && ![value isKindOfClass:[NSNull class]]) {
+                    [result setObject:value forKey:pro];
+                }
+            }
+        }
+        return result;
+    }
+    return nil;
+}
 
 + (NSDictionary *)propertiesNameAndTypeOfClass:(Class)class{
     NSMutableDictionary*result = [NSMutableDictionary dictionary];

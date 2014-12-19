@@ -24,13 +24,12 @@
         for (CAINews * news in result.datas) {
             [[CAIDataBase shareDataBase]replaceModel:news inTable:nil completion:nil];
         }
-//        NSLog(@"%@",result);
     }];
     
     [[CAIDataBase shareDataBase]findInTable:NSStringFromClass([CAINews class]) Request:@[[CAIFMDBQuery queryWithColumn:@"publishedTime" relationshap:CAIFMDBQueryRelationshapTypeGreaterThan toValue:@"1418818680000"]] orderBy:@"publishedTime" completion:^(NSError *error, NSArray *result) {
         for (int i=0; i<result.count; i++) {
             CAINews * news = result[i];
-            NSLog(@"%@",news.publishedTime);
+            NSLog(@"%@",news.author);
         }
     }];
     // Do any additional setup after loading the view, typically from a nib.

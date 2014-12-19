@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0219BD1A42C77B00916B86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0219BC1A42C77B00916B86 /* Foundation.framework */; };
 		4BC91F311A415297006193DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91F301A415297006193DA /* main.m */; };
 		4BC91F341A415297006193DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91F331A415297006193DA /* AppDelegate.m */; };
 		4BC91F371A415297006193DA /* MTLSqlAdapter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91F351A415297006193DA /* MTLSqlAdapter.xcdatamodeld */; };
@@ -118,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B0219BC1A42C77B00916B86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4BC91F2B1A415297006193DA /* MTLSqlAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTLSqlAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC91F2F1A415297006193DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC91F301A415297006193DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0219BD1A42C77B00916B86 /* Foundation.framework in Frameworks */,
 				4BC91FE81A415695006193DA /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +595,7 @@
 		4BC91FE61A41563B006193DA /* FrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				4B0219BC1A42C77B00916B86 /* Foundation.framework */,
 				4BC91FE71A415695006193DA /* libsqlite3.dylib */,
 			);
 			name = FrameWork;

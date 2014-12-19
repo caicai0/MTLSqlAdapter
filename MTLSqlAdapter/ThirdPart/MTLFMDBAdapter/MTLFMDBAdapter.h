@@ -16,7 +16,7 @@
  */
 @protocol MTLFMDBSerializing
 
-@required
+
 
 /**
  Specify how to map property keys to different columns in FMDB.
@@ -31,6 +31,7 @@
  @return a dictionary mapping property keys to FMDB columns (as strings) or 
  NSNull values.
  */
+@optional
 + (NSDictionary *)FMDBColumnsByPropertyKey;
 
 /**
@@ -39,6 +40,8 @@
  @return an NSArray of strings. Each string represents the name of a column to
  use as primary key.
  */
+
+@required
 + (NSArray *)FMDBPrimaryKeys;
 
 /**
@@ -47,8 +50,6 @@
  @return an NSString with the name of the table.
  */
 //+ (NSString *)FMDBTableName;
-
-@optional
 
 @end
 

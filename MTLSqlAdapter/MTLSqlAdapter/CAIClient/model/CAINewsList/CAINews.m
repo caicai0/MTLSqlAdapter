@@ -33,7 +33,7 @@
 
 + (NSDictionary *)FMDBColumnsByPropertyKey{
     return @{
-             @"author":@"author",
+             @"author":@"author1",
              @"newsId":@"newsId",
              @"imageUrlString":@"imageUrlString",
              @"publishedTime":@"publishedTime",
