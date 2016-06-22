@@ -106,6 +106,11 @@
 		4BC9208B1A415C81006193DA /* MD5Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208A1A415C81006193DA /* MD5Tool.m */; };
 		4BC9208E1A415ECB006193DA /* CAIDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208D1A415ECB006193DA /* CAIDataBase.m */; };
 		4BD9A15A1A42733500BB3C9F /* CAIFMDBQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */; };
+		4BDF721F1D179F2F00FD216A /* CAISqliteMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF721E1D179F2F00FD216A /* CAISqliteMaster.m */; };
+		4BDF72221D18CE6E00FD216A /* CAITableStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF72211D18CE6E00FD216A /* CAITableStruct.m */; };
+		4BDF72251D18CED400FD216A /* CAIFileld.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF72241D18CED400FD216A /* CAIFileld.m */; };
+		4BDF72281D18D14700FD216A /* CAIIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF72271D18D14700FD216A /* CAIIndex.m */; };
+		4BDF722B1D18D73200FD216A /* CAIFieldIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF722A1D18D73200FD216A /* CAIFieldIndex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,6 +324,16 @@
 		4BC9208D1A415ECB006193DA /* CAIDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIDataBase.m; sourceTree = "<group>"; };
 		4BD9A1581A42733500BB3C9F /* CAIFMDBQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIFMDBQuery.h; sourceTree = "<group>"; };
 		4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIFMDBQuery.m; sourceTree = "<group>"; };
+		4BDF721D1D179F2F00FD216A /* CAISqliteMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISqliteMaster.h; sourceTree = "<group>"; };
+		4BDF721E1D179F2F00FD216A /* CAISqliteMaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAISqliteMaster.m; sourceTree = "<group>"; };
+		4BDF72201D18CE6E00FD216A /* CAITableStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAITableStruct.h; path = ../../MTLSqlAdapter/CAIClient/CAITableStruct.h; sourceTree = "<group>"; };
+		4BDF72211D18CE6E00FD216A /* CAITableStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAITableStruct.m; path = ../../MTLSqlAdapter/CAIClient/CAITableStruct.m; sourceTree = "<group>"; };
+		4BDF72231D18CED400FD216A /* CAIFileld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAIFileld.h; path = ../../MTLSqlAdapter/CAIClient/CAIFileld.h; sourceTree = "<group>"; };
+		4BDF72241D18CED400FD216A /* CAIFileld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAIFileld.m; path = ../../MTLSqlAdapter/CAIClient/CAIFileld.m; sourceTree = "<group>"; };
+		4BDF72261D18D14700FD216A /* CAIIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAIIndex.h; path = ../../MTLSqlAdapter/CAIClient/CAIIndex.h; sourceTree = "<group>"; };
+		4BDF72271D18D14700FD216A /* CAIIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAIIndex.m; path = ../../MTLSqlAdapter/CAIClient/CAIIndex.m; sourceTree = "<group>"; };
+		4BDF72291D18D73200FD216A /* CAIFieldIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAIFieldIndex.h; path = ../../MTLSqlAdapter/CAIClient/CAIFieldIndex.h; sourceTree = "<group>"; };
+		4BDF722A1D18D73200FD216A /* CAIFieldIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CAIFieldIndex.m; path = ../../MTLSqlAdapter/CAIClient/CAIFieldIndex.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +538,16 @@
 				4BC91FA21A4154F3006193DA /* MTLFMDBAdapter.m */,
 				4BD9A1581A42733500BB3C9F /* CAIFMDBQuery.h */,
 				4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */,
+				4BDF721D1D179F2F00FD216A /* CAISqliteMaster.h */,
+				4BDF721E1D179F2F00FD216A /* CAISqliteMaster.m */,
+				4BDF72201D18CE6E00FD216A /* CAITableStruct.h */,
+				4BDF72211D18CE6E00FD216A /* CAITableStruct.m */,
+				4BDF72231D18CED400FD216A /* CAIFileld.h */,
+				4BDF72241D18CED400FD216A /* CAIFileld.m */,
+				4BDF72261D18D14700FD216A /* CAIIndex.h */,
+				4BDF72271D18D14700FD216A /* CAIIndex.m */,
+				4BDF72291D18D73200FD216A /* CAIFieldIndex.h */,
+				4BDF722A1D18D73200FD216A /* CAIFieldIndex.m */,
 			);
 			path = MTLFMDBAdapter;
 			sourceTree = "<group>";
@@ -992,6 +1017,7 @@
 				4BC91FBD1A4154F3006193DA /* NSArray+MTLManipulationAdditions.m in Sources */,
 				4BC91FAF1A4154F3006193DA /* UIButton+AFNetworking.m in Sources */,
 				4BC91FBA1A4154F3006193DA /* MTLModel.m in Sources */,
+				4BDF72251D18CED400FD216A /* CAIFileld.m in Sources */,
 				4BC91FE21A4155DA006193DA /* FMDatabaseAdditions.m in Sources */,
 				4BC9206E1A415945006193DA /* CAINonDatasResult.m in Sources */,
 				4BC920671A415945006193DA /* CAIComment.m in Sources */,
@@ -1008,6 +1034,7 @@
 				4BC9205D1A415945006193DA /* CAIAuthorNewsListResult.m in Sources */,
 				4BC920751A415945006193DA /* CAISpecail.m in Sources */,
 				4BC91FB81A4154F3006193DA /* MTLManagedObjectAdapter.m in Sources */,
+				4BDF721F1D179F2F00FD216A /* CAISqliteMaster.m in Sources */,
 				4BC920781A415945006193DA /* CAISubsribeResult.m in Sources */,
 				4BC920821A415945006193DA /* CAIYiyantangListResult.m in Sources */,
 				4BC91F341A415297006193DA /* AppDelegate.m in Sources */,
@@ -1056,6 +1083,8 @@
 				4BD9A15A1A42733500BB3C9F /* CAIFMDBQuery.m in Sources */,
 				4BC91FB71A4154F3006193DA /* MTLJSONAdapter.m in Sources */,
 				4BC9207E1A415945006193DA /* CAIYiyantangContent.m in Sources */,
+				4BDF722B1D18D73200FD216A /* CAIFieldIndex.m in Sources */,
+				4BDF72281D18D14700FD216A /* CAIIndex.m in Sources */,
 				4BC920661A415945006193DA /* CAIMyMessageResult.m in Sources */,
 				4BC91FAB1A4154F3006193DA /* AFURLSessionManager.m in Sources */,
 				4BC920721A415945006193DA /* CAIAd.m in Sources */,
@@ -1076,6 +1105,7 @@
 				4BC91FE11A4155DA006193DA /* FMDatabase.m in Sources */,
 				4BC91F371A415297006193DA /* MTLSqlAdapter.xcdatamodeld in Sources */,
 				4BC9205A1A415945006193DA /* CAINetPasser.m in Sources */,
+				4BDF72221D18CE6E00FD216A /* CAITableStruct.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

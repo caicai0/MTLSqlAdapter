@@ -10,6 +10,8 @@
 #import "FMDB.h"
 #import "MTLFMDBAdapter.h"
 #import "CAINews.h"
+#import "CAISqliteMaster.h"
+#import "CAITableStruct.h"
 
 @interface CAIDataBase ()
 
@@ -214,6 +216,48 @@ void handleOperationResultAndSql(BOOL success ,NSString *sql ,void(^completion)(
     NSArray * arr = @[[CAINews class]];
     for (Class aClass in arr) {
         [self.tablesInfo setObject:@{@"class":NSStringFromClass(aClass)} forKey:NSStringFromClass(aClass)];
+    }
+}
+
+- (void)createOrUpdateTable:(NSString *)tableName class:(Class)aClass completion:(void(^)(BOOL success))completion{
+    [self.queue inDatabase:^(FMDatabase *db) {
+        if ([db open]) {
+            NSString * sql = [MTLFMDBAdapter createTable:tableName class:aClass];
+            handleDbexecuteUpdateSql(db, sql, completion);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self createIndexs];
+            });
+        }
+    }];
+}
+
+- (void)createOrUpdateAll{//此方法只能数据库初始化调用一次
+    if (self.queue) {
+        [self.queue inDatabase:^(FMDatabase *db) {
+            if ([db open]) {
+                NSString * sql = @"select * from sqlite_master";
+                FMResultSet * resultSet = [db executeQuery:sql];
+                NSMutableArray * result = [NSMutableArray array];
+                NSError * error = nil;
+                while ([resultSet next]) {
+                    id item = [MTLFMDBAdapter modelOfClass:[CAISqliteMaster class] fromFMResultSet:resultSet error:&error];
+                    if (error) {
+                        NSLog(@"操作失败 %@",error);
+                    }else{
+                        [result addObject:item];
+                    }
+                }
+                NSLog(@"result:%@",result);
+
+                NSMutableArray * tableStruct = [NSMutableArray array];
+                for (CAISqliteMaster * master in result) {
+                    CAITableStruct * table = [[CAITableStruct alloc]init];
+                    table.tableName = master.tableName;
+                    [table addFieldsWithSql:master.sql];
+                }
+
+            }
+        }];
     }
 }
 

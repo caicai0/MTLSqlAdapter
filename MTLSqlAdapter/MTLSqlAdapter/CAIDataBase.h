@@ -17,6 +17,7 @@
 #pragma mark - 服务相关 业务不相关
 //以下方法受 tablesInfo 影响
 - (void)createTables;
+- (void)createOrUpdateAll;//自动更新
 - (void)createTablesCompletion:(void(^)(BOOL success))completion;
 - (void)findAllInTable:(NSString *)tableName completion:(void(^)(NSError * error, NSArray * result))completion;
 - (void)findInTable:(NSString *)tableName Request:(NSArray *)querys completion:(void(^)(NSError * error, NSArray * result))completion;
