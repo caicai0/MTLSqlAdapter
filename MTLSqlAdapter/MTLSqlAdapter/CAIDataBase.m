@@ -248,14 +248,12 @@ void handleOperationResultAndSql(BOOL success ,NSString *sql ,void(^completion)(
                     }
                 }
                 NSLog(@"result:%@",result);
-
                 NSMutableArray * tableStruct = [NSMutableArray array];
                 for (CAISqliteMaster * master in result) {
                     CAITableStruct * table = [[CAITableStruct alloc]init];
                     table.tableName = master.tableName;
                     [table addFieldsWithSql:master.sql];
                 }
-
             }
         }];
     }

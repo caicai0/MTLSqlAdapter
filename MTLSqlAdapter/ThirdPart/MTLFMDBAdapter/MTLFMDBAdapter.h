@@ -174,10 +174,20 @@ extern const NSInteger MTLFMDBAdapterErrorInvalidFMResultSetMapping;
 
 + (NSString *)findStatementInQuerys:(NSArray *)querys inTable:(NSString *)tableName;//query 之间默认是 and 关系
 + (NSString *)findStatementInQuerys:(NSArray *)querys orderBy:(NSString *)order inTable:(NSString *)tableName;
+//orderArray @[@{@"id":@"ASC"},@{@"name":@"DESC"}]
 + (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray inTable:(NSString *)tableName;
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray limit:(NSInteger)limit inTable:(NSString *)tableName;
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray limit:(NSInteger)limit offset:(NSInteger)offset inTable:(NSString *)tableName;
+
++ (NSString *)deletaStatementInQuerys:(NSArray *)querys inTable:(NSString *)tableName;
+
 + (NSArray *)queryKeyValueFromQuerys:(NSArray *)querys;
 
 //生成创建表的sql语句
 + (NSString *)createTable:(NSString *)tableName class:(Class)aClass;
 + (NSString *)createIndexOnTable:(NSString *)tableName class:(Class)aClass;
+//删除表的sql语句
++ (NSString *)dropTable:(NSString *)tableName;
 @end

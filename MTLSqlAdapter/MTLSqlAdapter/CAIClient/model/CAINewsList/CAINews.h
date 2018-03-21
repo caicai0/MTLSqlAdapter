@@ -12,7 +12,7 @@
 @interface CAINews : MTLModel <MTLJSONSerializing,MTLFMDBSerializing>
 
 @property (nonatomic, strong) NSString * author;
-@property (nonatomic, strong) NSString * newsId;
+@property (nonatomic, assign) NSInteger newsId;
 @property (nonatomic, strong) NSString * imageUrlString;
 @property (nonatomic, strong) NSString * publishedTime;
 @property (nonatomic, strong) NSString * readTimes;
@@ -28,5 +28,6 @@
 //数据库用于 查表
 @property (nonatomic, assign) NSInteger columid;
 @property (nonatomic, assign) NSInteger tasktype;
+@property (nonatomic, assign) BOOL test;//测试BOOL值
 
 @end

@@ -73,27 +73,6 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 		return nil;
 	}
     
-    /*
-	if ([modelClass respondsToSelector:@selector(classForParsingJSONDictionary:)]) {
-		modelClass = [modelClass classForParsingJSONDictionary:JSONDictionary];
-		if (modelClass == nil) {
-			if (error != NULL) {
-				NSDictionary *userInfo = @{
-                                           NSLocalizedDescriptionKey: NSLocalizedString(@"Could not parse JSON", @""),
-                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"No model class could be found to parse the JSON dictionary.", @"")
-                                           };
-                
-				*error = [NSError errorWithDomain:MTLJSONAdapterErrorDomain code:MTLJSONAdapterErrorNoClassFound userInfo:userInfo];
-			}
-            
-			return nil;
-		}
-        
-		NSAssert([modelClass isSubclassOfClass:MTLModel.class], @"Class %@ returned from +classForParsingJSONDictionary: is not a subclass of MTLModel", modelClass);
-		NSAssert([modelClass conformsToProtocol:@protocol(MTLJSONSerializing)], @"Class %@ returned from +classForParsingJSONDictionary: does not conform to <MTLJSONSerializing>", modelClass);
-	}
-    */
-    
 	self = [super init];
 	if (self == nil) return nil;
     
@@ -183,7 +162,6 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 #endif
 		}
 	}
-    
 	_model = [self.modelClass modelWithDictionary:dictionaryValue error:error];
 	if (_model == nil) return nil;
     
@@ -297,14 +275,21 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSDictionary *dictionaryValue = model.dictionaryValue;
     NSMutableArray *values = [NSMutableArray array];
+    
+    NSDictionary * sqlDic = [MTLFMDBAdapter sqlTypeDictionary];
+    NSDictionary * dic = [MTLFMDBAdapter propertiesNameAndTypeOfClass:model.class];
     for (NSString *propertyKey in Keys)
     {
-		NSString *keyPath = columns[propertyKey];
-        keyPath = keyPath ? : propertyKey;
-        
-        if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
-        {
-            [values addObject:[dictionaryValue valueForKey:propertyKey]];
+        NSDictionary * typeDic = dic[propertyKey];
+        NSString * type = typeDic[@"class"];
+        if([sqlDic.allKeys containsObject:type]){
+            NSString *keyPath = columns[propertyKey];
+            keyPath = keyPath ? : propertyKey;
+            
+            if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
+            {
+                [values addObject:[dictionaryValue valueForKey:propertyKey]];
+            }
         }
     }
     return values;
@@ -320,15 +305,22 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
     NSMutableArray *qmarks = [NSMutableArray array];
+    
+    NSDictionary * sqlDic = [MTLFMDBAdapter sqlTypeDictionary];
+    NSDictionary * dic = [MTLFMDBAdapter propertiesNameAndTypeOfClass:model.class];
     for (NSString *propertyKey in Keys)
     {
-        NSString *keyPath = columns[propertyKey];
-        keyPath = keyPath ? : propertyKey;
-        
-        if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
-        {
-            [stats addObject:keyPath];
-            [qmarks addObject:@"?"];
+        NSDictionary * typeDic = dic[propertyKey];
+        NSString * type = typeDic[@"class"];
+        if([sqlDic.allKeys containsObject:type]){
+            NSString *keyPath = columns[propertyKey];
+            keyPath = keyPath ? : propertyKey;
+            
+            if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
+            {
+                [stats addObject:keyPath];
+                [qmarks addObject:@"?"];
+            }
         }
     }
     
@@ -342,15 +334,22 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     NSArray *Keys = [[propertyKeys allObjects] sortedArrayUsingSelector:@selector(compare:)];
     NSMutableArray *stats = [NSMutableArray array];
     NSMutableArray *qmarks = [NSMutableArray array];
+    
+    NSDictionary * dic = [MTLFMDBAdapter propertiesNameAndTypeOfClass:model.class];
+    NSDictionary * sqlDic = [MTLFMDBAdapter sqlTypeDictionary];
     for (NSString *propertyKey in Keys)
     {
-        NSString *keyPath = columns[propertyKey];
-        keyPath = keyPath ? : propertyKey;
-        
-        if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
-        {
-            [stats addObject:keyPath];
-            [qmarks addObject:@"?"];
+        NSDictionary * typeDic = dic[propertyKey];
+        NSString * type = typeDic[@"class"];
+        if ([sqlDic.allKeys containsObject:type]){
+            NSString *keyPath = columns[propertyKey];
+            keyPath = keyPath ? : propertyKey;
+            
+            if (keyPath != nil && ![keyPath isEqual:[NSNull null]])
+            {
+                [stats addObject:keyPath];
+                [qmarks addObject:@"?"];
+            }
         }
     }
     
@@ -414,7 +413,11 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
 }
 
 + (NSString *)findStatementInQuerys:(NSArray *)querys orderBy:(NSString *)order inTable:(NSString *)tableName{
-    return [self findStatementInQuerys:querys orderByArray:@[@{@"key":order,@"value":@"ASC"}] inTable:tableName];
+    NSArray * orderArr = nil;
+    if (order && [order isKindOfClass:[NSString class]]) {
+        orderArr = @[@{order:@"ASC"}];
+    }
+    return [self findStatementInQuerys:querys orderByArray:orderArr inTable:tableName];
 }
 
 + (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray inTable:(NSString *)tableName{
@@ -432,13 +435,103 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
             statement = [statement stringByAppendingFormat:@" where %@",[stats componentsJoinedByString:@" AND "]];
         }
         
-        if (orderArray) {
+        if (orderArray && orderArray.count) {
             NSMutableArray *stats = [NSMutableArray array];
             for (NSDictionary *dic in orderArray) {
-                NSString *s = [NSString stringWithFormat:@"%@ %@",dic[@"key"],dic[@"value"]];
+                NSString *s = [NSString stringWithFormat:@"%@ %@",dic.allKeys.firstObject,dic.allValues.firstObject];
                 [stats addObject:s];
             }
             statement = [statement stringByAppendingFormat:@" order by %@",[stats componentsJoinedByString:@" , "]];
+        }
+        
+        return statement;
+    }
+    return nil;
+}
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray limit:(NSInteger)limit inTable:(NSString *)tableName{
+    NSParameterAssert(tableName);
+
+    if(tableName && [tableName isKindOfClass:[NSString class]]){
+        NSString *statement = [NSString stringWithFormat:@"select * from %@",tableName];
+
+        if (querys && querys.count) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (CAIFMDBQuery *query in querys) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@ ?", query.column,[MTLFMDBAdapter sqlForRelationshapType:query.relationType]];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" where %@",[stats componentsJoinedByString:@" AND "]];
+        }
+
+        if (orderArray && orderArray.count) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (NSDictionary *dic in orderArray) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@",dic.allKeys.firstObject,dic.allValues.firstObject];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" order by %@",[stats componentsJoinedByString:@" , "]];
+        }
+
+        if (limit>0) {
+            statement = [statement stringByAppendingFormat:@" limit %ld",limit];
+        }
+
+        return statement;
+    }
+    return nil;
+}
+
++ (NSString *)findStatementInQuerys:(NSArray *)querys orderByArray:(NSArray *)orderArray limit:(NSInteger)limit offset:(NSInteger)offset inTable:(NSString *)tableName{
+    NSParameterAssert(tableName);
+
+    if(tableName && [tableName isKindOfClass:[NSString class]]){
+        NSString *statement = [NSString stringWithFormat:@"select * from %@",tableName];
+
+        if (querys && querys.count) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (CAIFMDBQuery *query in querys) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@ ?", query.column,[MTLFMDBAdapter sqlForRelationshapType:query.relationType]];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" where %@",[stats componentsJoinedByString:@" AND "]];
+        }
+
+        if (orderArray && orderArray.count) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (NSDictionary *dic in orderArray) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@",dic.allKeys.firstObject,dic.allValues.firstObject];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" order by %@",[stats componentsJoinedByString:@" , "]];
+        }
+
+        if (limit>0) {
+            statement = [statement stringByAppendingFormat:@" limit %ld",limit];
+        }
+
+        if (offset>0){
+            statement = [statement stringByAppendingFormat:@" offset %ld",offset];
+        }
+
+        return statement;
+    }
+    return nil;
+}
+
++ (NSString *)deletaStatementInQuerys:(NSArray *)querys inTable:(NSString *)tableName{
+    NSParameterAssert(tableName);
+    
+    if(tableName && [tableName isKindOfClass:[NSString class]]){
+        NSString *statement = [NSString stringWithFormat:@"delete from %@",tableName];
+        
+        if (querys && querys.count) {
+            NSMutableArray *stats = [NSMutableArray array];
+            for (CAIFMDBQuery *query in querys) {
+                NSString *s = [NSString stringWithFormat:@"%@ %@ ?", query.column,[MTLFMDBAdapter sqlForRelationshapType:query.relationType]];
+                [stats addObject:s];
+            }
+            statement = [statement stringByAppendingFormat:@" where %@",[stats componentsJoinedByString:@" AND "]];
         }
         
         return statement;
@@ -499,16 +592,21 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     return sql;
 }
 
++ (NSString *)dropTable:(NSString *)tableName{
+    NSParameterAssert(tableName);
+    return [NSString stringWithFormat:@"drop table if exists %@",tableName];
+}
+
 #pragma mark - private
 
 + (NSDictionary *)columnByPropertyKeyWithClass:(Class)aClass{
-    if (YES) {
+    if ([aClass isSubclassOfClass:[MTLModel class]]) {
         NSMutableDictionary *result = [NSMutableDictionary dictionary];
         NSSet *set = [aClass propertyKeys];
         for (NSString * pro in set) {
             [result setObject:pro forKey:pro];
         }
-        if (YES) {
+        if ([aClass respondsToSelector:@selector(FMDBColumnsByPropertyKey)]) {
             NSDictionary *dic = [aClass FMDBColumnsByPropertyKey];
             for (NSString * pro in dic.allKeys) {
                 NSString * value = dic[pro];
@@ -526,37 +624,44 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     NSMutableDictionary*result = [NSMutableDictionary dictionary];
     unsigned int outCount, i;
     objc_property_t *properties = class_copyPropertyList(class, &outCount);
-    for (i=0; i<outCount; i++) {
-        objc_property_t property = properties[i];
-        mtl_propertyAttributes * mtlProperty = mtl_copyPropertyAttributes(property);
-        NSDictionary * propertyDic = nil;
-        if (mtlProperty->objectClass) {
-            propertyDic = @{
-                            @"class":NSStringFromClass(mtlProperty->objectClass),
-                            @"type":@(mtl_propertyContentTypeReference),
-                            @"getter":NSStringFromSelector(mtlProperty->getter),
-                            @"setter":NSStringFromSelector(mtlProperty->setter)
-                            };
-        }else{
-            if (mtlProperty->type[0]!='#' && mtlProperty->type[0]!='{' && mtlProperty->type[0]!='@') {
-                NSString * key = [NSString stringWithCString:mtlProperty->type encoding:NSUTF8StringEncoding];
-                if ([[self encodeTypeDictionary].allKeys containsObject:key]) {
-                    propertyDic = @{
-                                    @"class":[self encodeTypeDictionary][key],
-                                    @"type":@(mtl_propertyContentTypeBase),
-                                    @"getter":NSStringFromSelector(mtlProperty->getter),
-                                    @"setter":NSStringFromSelector(mtlProperty->setter)
-                                    };
-                }else{
-                    NSLog(@"字典缺少类型:%@",key);
+    if (properties) {
+        for (i=0; i<outCount; i++) {
+            objc_property_t property = properties[i];
+            mtl_propertyAttributes * mtlProperty = mtl_copyPropertyAttributes(property);
+            NSDictionary * propertyDic = nil;
+            if (mtlProperty->objectClass) {
+                propertyDic = @{
+                                @"class":NSStringFromClass(mtlProperty->objectClass),
+                                @"type":@(mtl_propertyContentTypeReference),
+                                @"getter":NSStringFromSelector(mtlProperty->getter),
+                                @"setter":NSStringFromSelector(mtlProperty->setter)
+                                };
+            }else{
+                if (mtlProperty->type[0]!='#' && mtlProperty->type[0]!='{' && mtlProperty->type[0]!='@') {
+                   
+                     NSString * key = [self encodetypeFor:mtlProperty->type];
+                    if (key) {
+                        propertyDic = @{
+                                        @"class":key,
+                                        @"type":@(mtl_propertyContentTypeBase),
+                                        @"getter":NSStringFromSelector(mtlProperty->getter),
+                                        @"setter":NSStringFromSelector(mtlProperty->setter)
+                                        };
+                    }else{
+                        NSLog(@"字典缺少类型:%@",key);
+                    }
                 }
             }
+            
+            if(propertyDic){
+                NSString * propertyName = [[NSString alloc]initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
+                [result setObject:propertyDic forKeyedSubscript:propertyName];
+            }
+            free(mtlProperty);//消除内存泄漏
         }
-        if(propertyDic){
-            NSString * propertyName = [[NSString alloc]initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
-            [result setObject:propertyDic forKeyedSubscript:propertyName];
-        }
+        free(properties);
     }
+    
     return result;
 }
 
@@ -567,7 +672,7 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         typeDic = @{
-                    [NSString stringWithCString:@encode(char) encoding:NSUTF8StringEncoding]:@"char",
+                    [NSString stringWithCString:@encode(char) encoding:NSUTF8StringEncoding]:@"short",
                     [NSString stringWithCString:@encode(int) encoding:NSUTF8StringEncoding]:@"int",
                     [NSString stringWithCString:@encode(short) encoding:NSUTF8StringEncoding]:@"short",
                     [NSString stringWithCString:@encode(long) encoding:NSUTF8StringEncoding]:@"long",
@@ -586,6 +691,50 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
     return typeDic;
 }
 
++ (NSString *)encodetypeFor:(char *)type{
+    if (strcmp(type, @encode(BOOL))==0) {
+        return @"BOOL";
+    }else if (strcmp(type, @encode(int))==0) {
+        return @"int";
+    }
+    else if (strcmp(type, @encode(long))==0) {
+        return @"long";
+    }
+    else if (strcmp(type, @encode(long long))==0) {
+        return @"long long";
+    }
+    else if (strcmp(type, @encode(unsigned char))==0) {
+        return @"unsigned char";
+    }
+    else if (strcmp(type, @encode(unsigned int))==0) {
+        return @"unsigned int";
+    }
+    else if (strcmp(type, @encode(unsigned short))==0) {
+        return @"unsigned short";
+    }
+    else if (strcmp(type, @encode(unsigned long))==0) {
+        return @"unsigned long";
+    }
+    else if (strcmp(type, @encode(unsigned long long))==0) {
+        return @"unsigned long long";
+    }
+    else if (strcmp(type, @encode(float))==0) {
+        return @"float";
+    }
+    else if (strcmp(type, @encode(double))==0) {
+        return @"double";
+    }
+    else if (strcmp(type, @encode(bool))==0) {
+        return @"bool";
+    }
+    else if (strcmp(type, @encode(char))==0) {
+        return @"char";
+    }
+    else{
+        return nil;
+    }
+}
+
 //解释类型 与sqllite 类型对应关系
 + (NSDictionary *)sqlTypeDictionary{
     static NSDictionary * sqlTypeDictionary = nil;
@@ -595,9 +744,9 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
                               //baseType
                               @"char":@"char(1)",
                               @"int":@"integer(64)",
-                              @"short":@"smallint",
-                              @"long":@"integer",
-                              @"long long":@"integer",
+                              @"short":@"integer(32)",
+                              @"long":@"integer(128)",
+                              @"long long":@"integer(256)",
                               @"unsigned char":@"integer",
                               @"unsigned int":@"integer",
                               @"unsigned short":@"integer",
@@ -633,9 +782,15 @@ static NSString * const MTLFMDBAdapterThrownExceptionErrorKey = @"MTLFMDBAdapter
         case CAIFMDBQueryRelationshapTypeLessThanOrEqualTo:{
             result = @"<=";
         }break;
-            
-        default:
-            break;
+        case CAIFMDBQueryRelationshapTypeIN:{
+            result = @"IN";
+        }break;
+        case CAIFMDBQueryRelationshapTypeNotIN:{
+            result = @"NOT IN";
+        }break;
+        default:{
+            result = @"=";
+        }break;
     }
     return result;
 }

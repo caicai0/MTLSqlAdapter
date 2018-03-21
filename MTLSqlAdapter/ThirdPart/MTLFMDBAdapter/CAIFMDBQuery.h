@@ -13,7 +13,9 @@ typedef NS_ENUM(NSUInteger, CAIFMDBQueryRelationshapType) {
     CAIFMDBQueryRelationshapTypeGreaterThan,
     CAIFMDBQueryRelationshapTypeGreaterThanOrEqualTo,
     CAIFMDBQueryRelationshapTypeLessThan,
-    CAIFMDBQueryRelationshapTypeLessThanOrEqualTo
+    CAIFMDBQueryRelationshapTypeLessThanOrEqualTo,
+    CAIFMDBQueryRelationshapTypeIN,
+    CAIFMDBQueryRelationshapTypeNotIN
 };
 
 @interface CAIFMDBQuery : NSObject

@@ -19,11 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[CAIClient shareClient]newsListTopWithPage:1 publishTime:@"0" finish:^(CAINewsList *result, NSError *error) {
-        [[CAIDataBase shareDataBase]createTables];
-        for (CAINews * news in result.datas) {
-            [[CAIDataBase shareDataBase]replaceModel:news inTable:nil completion:nil];
-        }
+    [[CAIDataBase shareDataBase]createTables];
+    CAINews * news = [[CAINews alloc]init];
+    news.newsId = 1000;
+    news.test = 0;
+    [[CAIDataBase shareDataBase]replaceModel:news inTable:NSStringFromClass([CAINews class])];
+
+    [[CAIDataBase shareDataBase]findAllInTable:NSStringFromClass([CAINews class]) completion:^(NSError *error, NSArray *result) {
+        NSLog(@"%@,%@",error,result);
     }];
     
     [[CAIDataBase shareDataBase]createOrUpdateAll];
