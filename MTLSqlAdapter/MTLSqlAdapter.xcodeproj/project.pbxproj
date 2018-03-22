@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B0219BD1A42C77B00916B86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0219BC1A42C77B00916B86 /* Foundation.framework */; };
+		4B155AA220638F47002B4FDA /* CAIDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B155AA120638F47002B4FDA /* CAIDBManager.m */; };
 		4BC91F311A415297006193DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91F301A415297006193DA /* main.m */; };
 		4BC91F341A415297006193DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91F331A415297006193DA /* AppDelegate.m */; };
 		4BC91F371A415297006193DA /* MTLSqlAdapter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BC91F351A415297006193DA /* MTLSqlAdapter.xcdatamodeld */; };
@@ -104,7 +105,7 @@
 		4BC920831A415945006193DA /* CAIYiyantangRefreshResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920571A415945006193DA /* CAIYiyantangRefreshResult.m */; };
 		4BC920881A415C46006193DA /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC920871A415C46006193DA /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4BC9208B1A415C81006193DA /* MD5Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208A1A415C81006193DA /* MD5Tool.m */; };
-		4BC9208E1A415ECB006193DA /* CAIDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208D1A415ECB006193DA /* CAIDataBase.m */; };
+		4BC9208E1A415ECB006193DA /* CAIDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC9208D1A415ECB006193DA /* CAIDb.m */; };
 		4BD9A15A1A42733500BB3C9F /* CAIFMDBQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */; };
 		4BDF721F1D179F2F00FD216A /* CAISqliteMaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF721E1D179F2F00FD216A /* CAISqliteMaster.m */; };
 		4BDF72221D18CE6E00FD216A /* CAITableStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDF72211D18CE6E00FD216A /* CAITableStruct.m */; };
@@ -125,6 +126,9 @@
 
 /* Begin PBXFileReference section */
 		4B0219BC1A42C77B00916B86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4B155AA020638F47002B4FDA /* CAIDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAIDBManager.h; sourceTree = "<group>"; };
+		4B155AA120638F47002B4FDA /* CAIDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAIDBManager.m; sourceTree = "<group>"; };
+		4B155AA320639295002B4FDA /* CAIDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIDb.h; sourceTree = "<group>"; };
 		4BC91F2B1A415297006193DA /* MTLSqlAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTLSqlAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC91F2F1A415297006193DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC91F301A415297006193DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -320,8 +324,7 @@
 		4BC920871A415C46006193DA /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		4BC920891A415C81006193DA /* MD5Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Tool.h; sourceTree = "<group>"; };
 		4BC9208A1A415C81006193DA /* MD5Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Tool.m; sourceTree = "<group>"; };
-		4BC9208C1A415ECB006193DA /* CAIDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIDataBase.h; sourceTree = "<group>"; };
-		4BC9208D1A415ECB006193DA /* CAIDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIDataBase.m; sourceTree = "<group>"; };
+		4BC9208D1A415ECB006193DA /* CAIDb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIDb.m; sourceTree = "<group>"; };
 		4BD9A1581A42733500BB3C9F /* CAIFMDBQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAIFMDBQuery.h; sourceTree = "<group>"; };
 		4BD9A1591A42733500BB3C9F /* CAIFMDBQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAIFMDBQuery.m; sourceTree = "<group>"; };
 		4BDF721D1D179F2F00FD216A /* CAISqliteMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAISqliteMaster.h; sourceTree = "<group>"; };
@@ -390,8 +393,10 @@
 				4BC91F401A415297006193DA /* LaunchScreen.xib */,
 				4BC91F351A415297006193DA /* MTLSqlAdapter.xcdatamodeld */,
 				4BC91F2E1A415297006193DA /* Supporting Files */,
-				4BC9208C1A415ECB006193DA /* CAIDataBase.h */,
-				4BC9208D1A415ECB006193DA /* CAIDataBase.m */,
+				4B155AA320639295002B4FDA /* CAIDb.h */,
+				4BC9208D1A415ECB006193DA /* CAIDb.m */,
+				4B155AA020638F47002B4FDA /* CAIDBManager.h */,
+				4B155AA120638F47002B4FDA /* CAIDBManager.m */,
 			);
 			path = MTLSqlAdapter;
 			sourceTree = "<group>";
@@ -1034,6 +1039,7 @@
 				4BC9206B1A415945006193DA /* CAINews.m in Sources */,
 				4BC91FAE1A4154F3006193DA /* UIAlertView+AFNetworking.m in Sources */,
 				4BC9205D1A415945006193DA /* CAIAuthorNewsListResult.m in Sources */,
+				4B155AA220638F47002B4FDA /* CAIDBManager.m in Sources */,
 				4BC920751A415945006193DA /* CAISpecail.m in Sources */,
 				4BC91FB81A4154F3006193DA /* MTLManagedObjectAdapter.m in Sources */,
 				4BDF721F1D179F2F00FD216A /* CAISqliteMaster.m in Sources */,
@@ -1075,7 +1081,7 @@
 				4BC91FDE1A4155DA006193DA /* FMTokenizers.m in Sources */,
 				4BC91FAA1A4154F3006193DA /* AFURLResponseSerialization.m in Sources */,
 				4BC9205C1A415945006193DA /* CAIAuthor.m in Sources */,
-				4BC9208E1A415ECB006193DA /* CAIDataBase.m in Sources */,
+				4BC9208E1A415ECB006193DA /* CAIDb.m in Sources */,
 				4BC920831A415945006193DA /* CAIYiyantangRefreshResult.m in Sources */,
 				4BC920601A415945006193DA /* CAICollectionResult.m in Sources */,
 				4BC91FB31A4154F3006193DA /* UIWebView+AFNetworking.m in Sources */,

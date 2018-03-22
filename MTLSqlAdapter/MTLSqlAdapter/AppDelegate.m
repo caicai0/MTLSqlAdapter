@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CAIDataBase.h"
+#import "CAIDb.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [CAIDataBase shareDataBase];
+    [CAIDb shareDataBase];
     return YES;
 }
 

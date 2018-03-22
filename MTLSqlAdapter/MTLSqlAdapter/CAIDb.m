@@ -6,28 +6,27 @@
 //  Copyright (c) 2014年 liyufeng. All rights reserved.
 //
 
-#import "CAIDataBase.h"
+#import "CAIDb.h"
 #import "FMDB.h"
 #import "MTLFMDBAdapter.h"
 #import "CAINews.h"
 #import "CAISqliteMaster.h"
 #import "CAITableStruct.h"
 
-@interface CAIDataBase ()
+@interface CAIDb ()
 
 @property (nonatomic, strong)FMDatabaseQueue *queue;
-@property (nonatomic, strong)NSMutableDictionary * tablesInfo;
 
 @end
 
-@implementation CAIDataBase
+@implementation CAIDb
 
 #pragma mark - shartInstance
 +(instancetype)shareDataBase{
-    static CAIDataBase * shareDataBase = nil;
+    static CAIDb * shareDataBase = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shareDataBase = [[CAIDataBase alloc]init];
+        shareDataBase = [[CAIDb alloc]init];
     });
     return shareDataBase;
 }
@@ -35,13 +34,19 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        NSArray * arr = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        NSString * docPath = [arr lastObject];
-        NSString * dbPath = [docPath stringByAppendingPathComponent:@"db.sqlite"];
-        NSLog(@"dbPath : %@",dbPath);
-        self.queue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
         self.tablesInfo = [NSMutableDictionary dictionary];
-        [self createTablesInfo];
+    }
+    return self;
+}
+
+- (instancetype)initWithPath:(NSString *)dbPath
+{
+    self = [super init];
+    if (self) {
+        self.queue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
+        if (!self.queue) {
+            self = nil;
+        }
     }
     return self;
 }
@@ -49,7 +54,6 @@
 #pragma mark - public
 - (void)createTables{
     [self createTablesCompletion:nil];
-    
 }
 
 - (void)createTablesCompletion:(void(^)(BOOL success))completion{

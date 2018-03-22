@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "CAIClient.h"
-#import "CAIDataBase.h"
+#import "CAIDb.h"
 
 @interface ViewController ()
 
@@ -19,17 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[CAIDataBase shareDataBase]createTables];
+    [[CAIDb shareDataBase]createTables];
     CAINews * news = [[CAINews alloc]init];
     news.newsId = 1000;
     news.test = 0;
-    [[CAIDataBase shareDataBase]replaceModel:news inTable:NSStringFromClass([CAINews class])];
+    [[CAIDb shareDataBase]replaceModel:news inTable:NSStringFromClass([CAINews class])];
 
-    [[CAIDataBase shareDataBase]findAllInTable:NSStringFromClass([CAINews class]) completion:^(NSError *error, NSArray *result) {
+    [[CAIDb shareDataBase]findAllInTable:NSStringFromClass([CAINews class]) completion:^(NSError *error, NSArray *result) {
         NSLog(@"%@,%@",error,result);
     }];
     
-    [[CAIDataBase shareDataBase]createOrUpdateAll];
+    [[CAIDb shareDataBase]createOrUpdateAll];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

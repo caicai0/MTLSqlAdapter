@@ -10,13 +10,16 @@
 #import "MTLFMDBAdapter.h"
 #import "CAIFMDBQuery.h"
 
-@interface CAIDataBase : NSObject
+@interface CAIDb : NSObject
 
-
+@property (nonatomic, strong)NSMutableDictionary * tablesInfo;
 
 #pragma mark - 服务相关 业务不相关
 //以下方法受 tablesInfo 影响
 - (void)createTables;
+
+- (void)createTable:(NSString *)tableName class:(Class)acls;
+
 - (void)createOrUpdateAll;//自动更新
 - (void)createTablesCompletion:(void(^)(BOOL success))completion;
 - (void)findAllInTable:(NSString *)tableName completion:(void(^)(NSError * error, NSArray * result))completion;
@@ -26,6 +29,8 @@
 #pragma mark - Tool
 //单例方法
 + (instancetype)shareDataBase;
+
+- (instancetype)initWithPath:(NSString *)dbPath;
 
 //以下是纯方法不受全局变量的影响
 
